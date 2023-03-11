@@ -1,0 +1,286 @@
+
+<!--Filter to fetch customer details-->
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="card">
+      <div class="card-header card-header-info">
+        <div class="row">
+          <div class="col-sm-6">
+            <h4 class="card-title">Milk Collection</h4>
+          </div>
+        </div>
+      </div>
+       <!-- <button (click)="getSalespersons()">chk</button> -->
+      <div class="card-body">
+        <form [formGroup]="franchiseAddForm">
+          <div class="row">
+            <div class="col-md-4 mat-form-field--inline">
+              <mat-form-field appearance="">
+                <mat-label> Date</mat-label>
+                <input matInput #input [matDatepicker]="datePicker2" (dateChange)="updateMinDate()" (focus)="datePicker2.open()" [max]="maxDate" placeholder="From Date" formControlName="orderDate">
+                <mat-datepicker-toggle matSuffix [for]="datePicker2"></mat-datepicker-toggle>
+                <mat-datepicker #datePicker2 (closed)="input.blur()"> </mat-datepicker>
+                <mat-error *ngIf="submitted && get.orderDate.errors"  > Date is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-4 mat-form-field--inline">
+              <mat-form-field appearance="">
+                <mat-label>Mandli Name</mat-label>
+                <mat-select placeholder="Mandli Name" [(ngModel)]="mpcsName" formControlName="mpcsName">
+                  <mat-option *ngFor="let option of mpcsList" [value]="option.id">
+                    {{ option.name }}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="submitted && get.mpcsName.errors">Mpcs Name is required</mat-error>
+              </mat-form-field>
+            </div>
+            
+            <div class="col-md-4 mat-form-field--inline">
+              <mat-form-field appearance="">
+                <mat-label>Shift</mat-label>
+                <mat-select placeholder="Shift" formControlName="shift" (selectionChange)="onShiftChange($event.value)">
+                  <mat-option *ngFor="let option of shifts" [value]="option.id">
+                    {{ option.name }}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="submitted && get.shift.errors">Shiftis required</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+         
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!--Customer Entry-->
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="card">
+      <div class="card-header card-header-info">
+        <div class="row">
+          <div class="col-sm-6">
+            <h4 class="card-title">pourer Details</h4>
+          </div>
+        </div>
+      </div>
+       <!-- <button (click)="getSalespersons()">chk</button> -->
+      <div class="card-body">
+        <form [formGroup]="franchiseAddForm">
+        
+
+          <div class="row">
+            <div class="col-md-3 mat-form-field--inline">
+              <mat-form-field appearance="">
+                <mat-label>Code</mat-label>
+                <input matInput type="text" placeholder="Code" formControlName="code" >
+                <mat-error *ngIf="submitted && get.code.errors">Code is required</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-3 mat-form-field--inline">
+              <mat-form-field appearance="">
+                <mat-label>Pourer Type</mat-label>
+                <mat-select placeholder="Pourer Type" formControlName="pourerType">
+                  <mat-option *ngFor="let option of pourerTypes" [value]="option.id">
+                    {{ option.name }}</mat-option>
+                </mat-select>
+                <!-- <mat-select placeholder="pourer"  formControlName="pourerType">
+                  <mat-option *ngFor="let option of pourerTypes" 
+                    [value]="option.id">{{ option.name }}
+                  </mat-option>
+                </mat-select> -->
+                <mat-error *ngIf="submitted && get.pourerType.errors">pourer is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3 mat-form-field--inline">
+              <mat-form-field appearance="">
+                <mat-label>Name</mat-label>
+                <input matInput type="text" placeholder="Name" formControlName="name" >
+                <mat-error *ngIf="submitted && get.name.errors">Name is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3 mat-form-field--inline">
+              <mat-form-field appearance="">
+                <mat-label>Sl No</mat-label>
+                <input matInput type="text" placeholder="Sl No" formControlName="slno" min="10">
+                <mat-error *ngIf="submitted && get.slno.errors">Slno is required</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-3 mat-form-field--inline">
+              <mat-form-field appearance="">
+                <mat-label>Type</mat-label>
+                <mat-select placeholder="Milk Type"  formControlName="milkType">
+                  <mat-option *ngFor="let option of milkTypes" 
+                    [value]="option.id">{{ option.name }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="submitted && get.milkType.errors">Type is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3 mat-form-field--inline">
+              <mat-form-field appearance="">
+                <mat-label>Quantity</mat-label>
+                <input matInput type="text" placeholder="Quantity" formControlName="qty" min="10" (change) ="calcualteAmt($event.target.value)">
+                <mat-error *ngIf="submitted && get.qty.errors">Quantity is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3 mat-form-field--inline">
+              <mat-form-field appearance="">
+                <mat-label>FAT</mat-label>
+                <input matInput type="text" placeholder="Fat" formControlName="fat" min="10">
+                <mat-error *ngIf="submitted && get.fat.errors">Fat is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3 mat-form-field--inline">
+              <mat-form-field appearance="">
+                <mat-label>SNF</mat-label>
+                <input matInput type="text" placeholder="SNF" formControlName="snf" min="10">
+                <mat-error *ngIf="submitted && get.snf.errors">Contact Person is required</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-3 mat-form-field--inline">
+              <mat-form-field appearance="">
+                <mat-label>Rate</mat-label>
+                <input matInput type="text" placeholder="Rate" formControlName="rate" min="10">
+                <mat-error *ngIf="submitted && get.rate.errors">Rate is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3 mat-form-field--inline">
+              <mat-form-field appearance="">
+                <mat-label>Amount</mat-label>
+                <input matInput type="text" placeholder="Amount" formControlName="amount" min="10">
+                <mat-error *ngIf="submitted && get.amount.errors">Amount is required</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+         
+
+          <div class="row">
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-primary btn-sm btn_save" (click)="onSubmit()">Save</button>
+              <!-- <button type="submit" class="btn btn-warning btn-sm btn_reset" (click)="reset()">Reset</button>
+              <button type="submit" class="btn btn-danger btn-sm btn_cancel" 
+              [routerLink]="['/masters/listFranchise']">Cancel</button> -->
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!--Customer List-->
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="card">
+      <div class="card-header card-header-info">
+        <div class="row">
+          <div class="col-sm-6">
+            <h4 class="card-title">Customer List</h4>
+          </div>
+          <div class="col-sm-6">
+
+           
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <!-- <div class="row">
+          <div class="offset-md-9 col-md-3">
+            <mat-form-field>
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+            </mat-form-field>
+          </div>
+        </div> -->
+
+        <div class="mat-elevation-z8 ">
+          <div class="table-responsive">
+            <table class="table">
+              <table mat-table [dataSource]="customerList">
+                <ng-container matColumnDef="code">
+                  <th mat-header-cell *matHeaderCellDef> Code </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element; let i = index;">  {{element.code}}  </td>
+                </ng-container>
+                <!-- Position Column -->
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef> Name </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+                <!-- Weight Column -->
+                <ng-container matColumnDef="slno">
+                  <th mat-header-cell *matHeaderCellDef> SlNo </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element"> {{element.slno}} </td>
+                </ng-container>
+                <ng-container matColumnDef="type">
+                  <th mat-header-cell *matHeaderCellDef> Type </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element; let i = index;">  {{element.type}}  </td>
+                </ng-container>
+                <!-- Position Column -->
+                <ng-container matColumnDef="qty">
+                  <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element"> {{element.qty}} </td>
+                </ng-container>
+                <!-- Weight Column -->
+                <ng-container matColumnDef="fat">
+                  <th mat-header-cell *matHeaderCellDef> FAT </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element"> {{element.fat}} </td>
+                </ng-container>
+                <ng-container matColumnDef="snf">
+                  <th mat-header-cell *matHeaderCellDef> SNF </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element"> {{element.snf}} </td>
+                </ng-container>
+                <ng-container matColumnDef="clr">
+                  <th mat-header-cell *matHeaderCellDef> CLR </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element; let i = index;">  {{element.clr}}  </td>
+                </ng-container>
+                <!-- Position Column -->
+                <ng-container matColumnDef="rtpl">
+                  <th mat-header-cell *matHeaderCellDef> RTPL </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element"> {{element.rtpl}} </td>
+                </ng-container>
+                <!-- Weight Column -->
+                <ng-container matColumnDef="amount">
+                  <th mat-header-cell *matHeaderCellDef> Amount(Rs) </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element"> {{element.amount}} </td>
+                </ng-container>
+               
+                <ng-container matColumnDef="Actions">
+                  <th mat-header-cell *matHeaderCellDef> Actions </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element;let i = index">
+                    <!-- <mat-slide-toggle [(ngModel)]="seasonActiveStatus[element.id] " [matTooltip]="!element.active_season ? 'Activate The Season' : 'InActivate The Season'" matTooltipPosition="left" matTooltipClass="custom-tooltip" (change)="updateSeasonActiveStatus(element.id)"></mat-slide-toggle> -->
+                    <!-- <button  [disabled]="seasonActiveStatus[element.id] == true" class="primair"> Active</button>
+                    <button [disabled]="seasonActiv `eStatus[element.id] == false"  class="primair"> InActive</button> -->
+
+                    <a (click)="editCustomer(element)" class="edit_listseasoncolor edit"><i class="material-icons"
+                      matTooltip="Edit" matTooltipPosition="left" matTooltipClass="custom-tooltip">&#xE254;</i></a>
+                    <a (click)="deleteSeason(element.id)" class="delete del_listseasoncolor" *ngIf="element.active_season == 0"><i class="material-icons"
+                       matTooltip="Delete" matTooltipPosition="right" matTooltipClass="custom-tooltip">&#xE872;</i></a>
+                  </td>
+                </ng-container>
+
+                <tr class="tb_head_row" mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr class="tb_rows_data" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+              <mat-paginator #myPaginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

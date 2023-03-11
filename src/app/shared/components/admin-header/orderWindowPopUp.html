@@ -1,0 +1,47 @@
+<div mat-dialog-content>
+    <div class="normalize order_window">
+        <span class="order_window_popup">Order Window</span>
+    </div>
+    <mat-form-field class="example-full-width">
+        <mat-label>Select Brand</mat-label>
+        <mat-select [(ngModel)]="data.brandId" name="brandId">
+            <mat-option *ngFor="let option of data.brandList ;let i = index" [value]="option.brand_id">
+                {{option.brand_name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div class=" tab_pad ">
+        <div class="">         
+            <table class="table-striped table-hover table-bordered">
+                <tr class="tr_back">
+                    <th class="select_radio"></th>
+                    <th class=" Order_tbl_col ">Order Window</th>
+                    <th class=" Order_tbl_col">Season </th>
+                    <th class=" Order_tbl_col">Start Date </th>
+                    <th class=" Order_tbl_col">End Date </th>
+                </tr>
+            
+                <tr *ngFor="let row of data.orderWindowSeasonList; let i = index" >
+                    <td class="pad_radio">
+                        <mat-radio-group class="example-radio-group" [(ngModel)]="data.orderWindowIdSelected" required> 
+                            <mat-radio-button class="example-radio-button" [value]="row.id">
+                            </mat-radio-button>
+                        </mat-radio-group>
+                    </td>
+                    <td class="tg-0pky popup_data">{{row.name}}</td>
+                    <td class="popup_data">{{row.season_code}} </td>
+                    <td class="tg-0pky popup_data">{{row.start_date | date}}</td>
+                    <td class="popup_data">{{row.end_date | date}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <div class="copy_txt">
+        <button class="btn btn-danger btn-sm text-right btn_copy" (click)="onNoClick()">Cancel</button>
+        <button [mat-dialog-close]="data" [disabled]="!data.orderWindowIdSelected || !data.brandId" cdkFocusInitial class="btn btn-danger btn-sm text-right btn_copy">Continue</button>
+    </div>
+</div>
+      

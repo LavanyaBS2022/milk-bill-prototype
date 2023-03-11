@@ -1,0 +1,153 @@
+<!--Filter to fetch customer details-->
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="card">
+      <div class="card-header card-header-info">
+        <div class="row">
+          <div class="col-sm-6">
+            <h4 class="card-title">Cattle Feed Billing</h4>
+          </div>
+        </div>
+      </div>
+       <!-- <button (click)="getSalespersons()">chk</button> -->
+      <div class="card-body">
+        <form [formGroup]="farmersLedgerForm">
+          <div class="row">
+            <div class="col-md-3 mat-form-field--inline">
+              <mat-form-field appearance="">
+                <mat-label> Date</mat-label>
+                <input matInput #input [matDatepicker]="datePicker2" (dateChange)="updateMinDate()" (focus)="datePicker2.open()" [max]="maxDate" placeholder="From Date" formControlName="fromDate">
+                <mat-datepicker-toggle matSuffix [for]="datePicker2"></mat-datepicker-toggle>
+                <mat-datepicker #datePicker2 (closed)="input.blur()"> </mat-datepicker>
+                <mat-error *ngIf="get.fromDate.errors"  >From Date is required</mat-error>
+              </mat-form-field>
+            </div>
+           
+            <div class="col-md-3 mat-form-field--inline">
+              <mat-form-field appearance="">
+                <mat-label>Customer</mat-label>
+                <mat-select placeholder="Shift" formControlName="customer" (selectionChange)="onCustomer($event.value)">
+                  <mat-option *ngFor="let option of customers" [value]="option.id">
+                    {{ option.name }}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="submitted && get.customer.errors">Customer is required</mat-error>
+              </mat-form-field>
+            </div>
+            
+           
+          </div>
+          <!-- <div class="row">
+            <div class="col-md-3 mat-form-field--inline">
+              <button type="submit" class="btn btn-primary btn-sm btn_save" (click)="onSubmit()" >Submit</button>
+
+            </div>
+          </div> -->
+
+         
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!--Customer List-->
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="card">
+      <div class="card-header card-header-info">
+        <div class="row">
+          <div class="col-sm-9">
+            <h4 class="card-title">Indent Details</h4>
+          </div>
+          <div class="col-sm-3">
+            <button type="submit" class="btn btn-primary btn-sm btn_save" (click)="onSubmit()" >Save</button>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <!-- <div class="row">
+          <div class="offset-md-9 col-md-3">
+            <mat-form-field>
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+            </mat-form-field>
+          </div>
+        </div> -->
+        <div class="row">
+          <div class="col-md-12" >
+            <form [formGroup]="cattleFeedForm">
+
+            <table class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th width="20%">Packet Name</th>
+                  <th width="10%">Bag</th>
+                  <th width="10%">Kg</th>
+                  <th width="10%">Rate</th>
+                  <th width="10%">Amount</th>
+                  <th width="10%">Actions</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr >
+                  <td width="20%">
+                    <mat-form-field appearance="">
+                      <mat-label>Packet Name</mat-label>
+                      <mat-select placeholder="Packet Name" formControlName="packetName" >
+                        <mat-option *ngFor="let option of packets" [value]="option">
+                          {{ option.name }}</mat-option>
+                      </mat-select>
+                      <!-- <mat-error *ngIf="submitted && get.customer.errors">Customer is required</mat-error> -->
+                    </mat-form-field>
+                  </td>
+                  <td width="10%">
+                    <mat-form-field appearance="">
+                      <mat-label>Bag</mat-label>
+                      <input matInput type="text" placeholder="Bag" formControlName="bag" min="10" (change) ="calculateValue($event.target.value)">
+                      <!-- <mat-error *ngIf="submitted && get.bag.errors">Fat is required</mat-error> -->
+                    </mat-form-field>
+                  </td>
+                  <td width="10%">
+                    <input matInput type="text" placeholder="Kg" formControlName="kg" min="10" disabled (change) ="calculateValue($event.target.value)">
+
+                  </td>
+                  <td width="10%">
+                    <input matInput type="text" placeholder="Rate" formControlName="rate" min="10" disabled (change) ="calculateValue($event.target.value)">
+
+                  </td>
+                  <td width="10%">
+                    <input matInput type="text" placeholder="Amt" formControlName="amt" min="10" disabled (change) ="calculateValue($event.target.value)">
+
+                  </td>
+                  <td width="10%"> 
+                    <button type="submit" class="btn btn-primary btn-sm btn_save" (click)="addPacket()" >Add Packet</button>
+                  </td>
+
+                </tr>
+                <tr *ngFor="let packet of selectedPackets">
+                  <td width="20%">{{packet.packetName}}</td>
+                  <td width="10%">{{packet.qty}}</td>
+                  <td width="10%">{{packet.kg}}</td>
+                  <td width="10%">{{packet.rate}}</td>
+                  <td width="10%">{{packet.amt}}</td>
+                  <td width="10%"> 
+                    <button type="submit" class="btn btn-primary btn-sm btn_save" (click)="deleteRow(packet)">Remove</button>
+                  </td>
+
+                </tr>
+              </tbody>
+            </table>
+          </form>
+
+          </div>
+        </div>
+
+       
+      </div>
+    </div>
+  </div>
+</div>

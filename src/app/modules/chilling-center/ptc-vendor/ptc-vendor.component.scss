@@ -1,0 +1,31 @@
+.example-stepper {
+    margin-top: 8px;
+  }
+  
+  .mat-form-field {
+    margin-top: 16px;
+  }
+  
+  .row1 td mat-form-field{
+    width: 500px;
+    margin-right: 50px;
+  }
+  .row2 td mat-form-field{
+    width: 500px;
+    margin-right: 100px;
+  }
+  .row3 td mat-form-field{
+    width: 250px;
+    margin-right: 50px;
+  }
+  
+  .row12 td mat-form-field{
+    width: 250px;
+    margin-right: 50px;
+  }
+  
+  .row21 mat-form-field{
+    width: 250px;
+    margin-right: 50px !important;
+  }
+  

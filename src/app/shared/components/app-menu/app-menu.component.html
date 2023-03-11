@@ -1,0 +1,21 @@
+<mat-toolbar class="menu-toolbar">
+  <ul>
+    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
+      <button mat-button [mat-menu-trigger-for]="menu1">
+        <mat-icon style="color: #4099ff;">note_add</mat-icon>
+        Menu 1
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+      <mat-menu class="app-menu-item" #menu1="matMenu">
+        <span>
+          <button mat-menu-item [routerLink]="" [routerLinkActive]="['active']">
+            <mat-icon style="color: #2ed8b6;">
+              note_add
+            </mat-icon>
+            Menu 1 1
+          </button>
+        </span>
+      </mat-menu>
+    </li>
+  </ul>
+</mat-toolbar>

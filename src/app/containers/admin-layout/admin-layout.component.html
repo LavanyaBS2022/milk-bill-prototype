@@ -1,0 +1,116 @@
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<div class="main-container" [dir]="dir"
+    [ngClass]="{'minisidebar': minisidebar, 'boxed': boxed, 'danger': danger, 'blue': blue, 'green': green, 'dark': dark }">
+    <!-- ============================================================== -->
+    <!-- Topbar - style you can find in header.scss -->
+    <!-- ============================================================== -->
+    <mat-toolbar color="primary" class="topbar telative">
+        <!-- ============================================================== -->
+        <!-- Logo - style you can find in header.scss -->
+        <!-- ============================================================== -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">
+                <!-- Logo icon -->
+                <!-- <b>                    
+                    <img src="assets/images/logo-icon.png" alt="homepage" class="dark-logo">
+                    <img src="assets/images/logo-light-icon.png" alt="homepage" class="light-logo">
+                </b> -->
+                <!--End Logo icon -->
+                <!-- Logo text -->
+                <span fxShow="false" fxShow.gt-xs>
+                    <!-- dark Logo text -->
+                    <img src="assets/images/nandini-logo.png" style="width: 100px;height: 35px;" alt="homepage" class="dark-logo"> 
+                    <!-- Light Logo text -->
+                    <img src="assets/images/nandini-logo.png" style="width: 100px;height: 35px;" class="light-logo" alt="homepage">
+                </span>
+            </a>
+        </div>
+        <!-- ============================================================== -->
+        <!-- sidebar toggle -->
+        <!-- ============================================================== -->
+
+        <!-- <button mat-icon-button (click)="snav.toggle()" value="sidebarclosed">
+            <mat-icon>menu</mat-icon>
+        </button>  -->
+        <button mat-icon-button (click)="miniMenu()" value="sidebarclosed">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <!-- ============================================================== -->
+        <!-- Search - style you can find in header.scss -->
+        <!-- ============================================================== -->
+        <!-- <button mat-icon-button class="srh-btn">
+            <mat-icon>search</mat-icon>
+        </button> -->
+        <form class="app-search">
+            <input type="text" class="form-control" placeholder="Search &amp; enter">
+            <a class="cl-srh-btn">
+                <i class="ti-close"></i>
+            </a>
+        </form>
+        <span fxFlex> </span>
+        <!-- ============================================================== -->
+        <!-- app header component - style you can find in header.scss / header.component.ts-->
+        <!-- ============================================================== -->
+        <admin-header></admin-header>
+        <!-- ============================================================== -->
+        <!-- Right sidebar toggle - style you can find in rightsidebar.component.scss -->
+        <!-- ============================================================== -->
+        <!-- <button  mat-icon-button class="ml-xs overflow-visible">
+            <mat-icon>settings</mat-icon>
+        </button> -->
+    </mat-toolbar>
+    <!-- ============================================================== -->
+    <!-- End Topbar - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+
+    <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 0 : 0"
+        [ngClass]="{'minisidebar': minisidebar}">
+        <!-- ============================================================== -->
+        <!-- Sidebar - style you can find in sidebar.scss -->
+        <!-- ============================================================== -->
+        <mat-sidenav #snav id="snav" class="pl-xs" [mode]="mobileQuery.matches ? 'side' : 'over'" fixedTopGap="0"
+            [opened]="mobileQuery.matches" [disableClose]="mobileQuery.matches" (open)="sidebarOpened = true"
+            (close)="sidebarOpened = false" [perfectScrollbar]="config">
+            <app-sidebar class="app-sidebar"></app-sidebar>
+
+        </mat-sidenav>
+        <!-- ============================================================== -->
+        <!-- Sidebar - style you can find in sidebar.scss -->
+        <!-- ============================================================== -->
+
+        <!-- ============================================================== -->
+        <!-- Page container - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <mat-sidenav-content class="page-wrapper">
+            
+            <!-- <div class="page-content">
+                    <div class="main-content">
+                        <div class="container-fluid">
+                            <router-outlet>
+                                 <app-spinner></app-spinner> 
+                            </router-outlet>
+                        </div>
+                    </div>
+
+                </div> -->
+            <div class="page-content" >
+                <!-- <div class="row" *ngIf="userDetails.userType == 2">
+                    <div class="col-md-12">
+                        <span style="float: right;color: red;"><b>{{userDetails.orderWindowName}}</b></span>
+                    </div>
+                </div> -->
+                <router-outlet>
+                    <!-- <app-spinner></app-spinner> -->
+                </router-outlet>
+            </div>
+
+        </mat-sidenav-content>
+        <!-- ============================================================== -->
+        <!-- Page container - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+
+
+    </mat-sidenav-container>
+</div>

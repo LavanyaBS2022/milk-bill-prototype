@@ -1,0 +1,19 @@
+<div mat-dialog-content>
+    <div class="login-register error-page-backcolor">
+    <div class="login-register-box text-center">
+        <h1>
+            <!-- <img src="assets/images/logo.png" class="light-logo" alt="homepage"> -->
+        </h1>
+        <!-- <h1 class="error_msg">4</h1><h1 class="error_msg1">0</h1><h1 class="error_msg2">4</h1> -->
+        <p class="text-muted m-t-30 m-b-30 page_not_found">Oops! You're lost.</p>
+        <p class="text-muted m-t-30 m-b-30">The page you are looking for was not found</p>
+        <a mat-raised-button color="danger" [routerLink]="['/dashboard']" class="btn btn-danger btn_cancel btn-rounded waves-effect waves-light m-b-40">Return back to dashboard</a>
+    </div>
+  </div>
+  </div>
+  <div mat-dialog-actions>
+    <div class="copy_txt">
+      <button class="btn btn-danger btn-sm text-right btn_copy" (click)="onNoClick()">Cancel</button>
+      <!-- <button [mat-dialog-close]="data" cdkFocusInitial class="btn btn-danger btn-sm text-right btn_copy">Copy</button> -->
+    </div>
+  </div>

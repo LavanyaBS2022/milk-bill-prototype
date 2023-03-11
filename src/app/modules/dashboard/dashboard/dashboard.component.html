@@ -1,0 +1,643 @@
+<div fxLayout="row wrap">
+  <!-- column -->
+  <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+    <mat-card class="bg-cyan cyan-hover hover-effect sub-card">
+      <mat-card-content class="">
+        <!-- Row -->
+        <div class="d-flex no-block ">
+          <!-- column -->
+          <div class="m-r-10 no-shrink">
+            <button mat-fab mat-card-icon class="shadow-none bg-inverse  bg-primary">
+              <i class="fa fa-usd order_section_icons" aria-hidden="true"></i>
+            </button>
+          </div>
+          <!-- column -->
+          <div>
+            <h3 class="ord_txt m-0">{{3000 | number:'1.0-0'}} Ltrs</h3>
+            <h6 class="ord_txt_amt text-muted m-0">Today's Milk Procured </h6>
+          </div>
+
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <!-- column -->
+  <!-- column -->
+  <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+    <mat-card class="bg-orange orange-hover hover-effect sub-card">
+      <mat-card-content>
+        <!-- Row -->
+        <div class="d-flex no-block">
+          <div class="m-r-10 no-shrink">
+            <button mat-fab color="warn" mat-card-icon class="shadow-none bg-danger">
+              <mat-icon>content_paste</mat-icon>
+            </button>
+          </div>
+          <div>
+            <h3 class="ord_txt m-0">{{80000 | number:'1.0-0'}} Ltrs</h3>
+            <h6 class="ord_txt_amt text-muted m-0">Monthly Milk Procured </h6>
+          </div>
+
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <!-- column -->
+  <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+    <mat-card class="bg-primary primary-hover hover-effect sub-card">
+      <mat-card-content>
+        <!-- Row -->
+        <div class="d-flex no-block">
+          <div class="m-r-10 no-shrink">
+            <button mat-fab color="accent" mat-card-icon class="shadow-none ">
+              <i class="fa fa-file-text-o order_section_icons" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div>
+            <h3 class="ord_txt m-0">{{totalArticles | number:'1.0-0'}}</h3>
+            <h6 class="ord_txt_amt text-muted m-0">Items </h6>
+          </div>
+
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <!-- column -->
+  <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+    <mat-card class="bg-success success-hover hover-effect sub-card">
+      <mat-card-content>
+        <!-- Row -->
+        <div class="d-flex no-block">
+          <!-- column -->
+          <div class="m-r-10 no-shrink">
+            <button mat-fab color="warn" mat-card-icon class="shadow-none  bg-warning">
+              <i class="fa fa-users order_section_icons" aria-hidden="true"></i>
+            </button>
+          </div>
+          <!-- column -->
+          <div>
+            <h3 class="ord_txt m-0">{{totalNoOfFranchisee}}</h3>
+            <h6 class="ord_txt_amt text-muted m-0">{{labelCustomerStore}}</h6>
+          </div>
+
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+
+
+  <!-- Column-->
+  <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+    <mat-card class="order_section chart-hover hover-effect sub-card">
+      <mat-card-content class="allchart">
+        <mat-card-title class="ord_gen">Total Order</mat-card-title>
+        <div *ngIf="boolBarChartData">
+          <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+            [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)"
+            [colors]="barChartColors" (chartClick)="chartClicked($event)">
+          </canvas>
+        </div>
+
+      </mat-card-content>
+      <div *ngIf="!boolBarChartData" class="text-center">No data to display</div>
+    </mat-card>
+
+  </div>
+  <!-- Column-->
+  <div *ngIf="userDetails.userType==1" fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+    <mat-card class="order_section chart-hover hover-effect sub-card">
+      <mat-card-content class="allchart">
+        <mat-card-title class="ord_gen">Order By Customer Type </mat-card-title>
+        <div *ngIf="boolPieChartData">
+          <canvas baseChart height="150px" [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+            (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"
+            [colors]="[{backgroundColor: ['#1976d2', '#26dad2', '#dadada']}]">
+          </canvas>
+        </div>
+      </mat-card-content>
+      <div *ngIf="!boolPieChartData" class="text-center">No data to display</div>
+    </mat-card>
+  </div>
+
+  <!-- column -->
+  <!-- <div fxFlex.gt-sm="33" fxFlex.gt-xs="100" fxFlex="100">
+    <mat-card class="order_section chart-hover hover-effect sub-card">
+      <mat-card-content class="order_gen_chart">
+        <mat-card-title class="ord_gen">Order By Gender </mat-card-title>
+        Row
+        <div class="d-flex no-block">
+          column
+          <div class="m-r-10 no-shrink">
+            <div class="float-left order_gen_right">
+              <button mat-fab mat-card-icon class="shadow-none bg-inverse  bg-primary btn_bottom">
+                <img src="assets/images/men.png" alt="homepage" class="img-responsive order_gen_img">
+              </button>
+              <div class="ord_gen_data">
+                <h6 class="gender_data text-muted m-0 ">Men</h6>
+                <h3 class="ord_gen_txt m-0">{{totalOrderbyMen | number:'1.0-0'}}</h3>
+              </div>
+            </div>
+
+            <div class="float-left order_gen_right">
+              <button mat-fab color="warn" mat-card-icon class="shadow-none  bg-warning btn_bottom">
+                <img src="assets/images/women.png" alt="homepage" class="img-responsive order_gen_img">
+              </button>
+              <div class="ord_gen_data">
+                <h6 class="gender_data text-muted m-0 ">Women</h6>
+                <h3 class="ord_gen_txt m-0">{{totalOrderbyWomen | number:'1.0-0'}}</h3>
+              </div>
+            </div>
+
+            <div class="float-left order_gen_right">
+              <button mat-fab color="accent" mat-card-icon class="shadow-none btn_bottom">
+                <img src="assets/images/unisex.png" alt="homepage" class="img-responsive order_gen_img">
+              </button>
+              <div class="ord_gen_data">
+                <h6 class="gender_data text-muted m-0 ">Unisex</h6>
+                <h3 class="ord_gen_txt m-0">{{totalOrderbyUnisex | number:'1.0-0'}}</h3>
+              </div>
+            </div>
+            <div class="float-left order_gen_right">
+              <button mat-fab color="warn" mat-card-icon class="shadow-none bg-danger btn_bottom">
+                <img src="assets/images/kid.png" alt="homepage" class="img-responsive order_gen_img">
+              </button>
+              <div class="ord_gen_data">
+                <h6 class="gender_data text-muted m-0 ">Kids</h6>
+                <h3 class="ord_gen_txt m-0">{{totalOrderbyKids | number:'1.0-0'}}</h3>
+              </div>
+            </div>
+
+
+          </div>
+          column
+
+        </div>
+
+      </mat-card-content>
+
+    </mat-card>
+  </div> -->
+
+  <!-- gender piechart -->
+  <div fxFlex.gt-sm="{{genderFlex}}" fxFlex.gt-xs="100" fxFlex="100">
+    <mat-card class="order_section chart-hover hover-effect sub-card">
+      <mat-card-content class="order_chart">
+        <mat-card-title class="ord_gen">Order By Gender</mat-card-title>
+        <div *ngIf="boolPieChartOrderbyGender">
+          <canvas baseChart height="" [data]="pieChartOrderbyGenderData" [labels]="pieChartOrderbyGenderLabels"
+            [chartType]="pieChartOrderbyGenderType" (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"
+            [colors]="[{backgroundColor: ['#0f4f43','#16bc96', '#008ffb', '#dadada']}]">
+          </canvas>
+        </div>
+      </mat-card-content>
+      <div *ngIf="!boolPieChartOrderbyCountryData" class="text-center">No data to display</div>
+    </mat-card>
+  </div>
+
+  <!-- Column-->
+  <div *ngIf="userDetails.userType==1" fxFlex.gt-sm="33" fxFlex.gt-xs="100" fxFlex="100">
+    <mat-card class="order_section chart-hover hover-effect sub-card">
+      <mat-card-content class="order_chart">
+        <mat-card-title class="ord_gen">Order By Country </mat-card-title>
+        <div *ngIf="boolPieChartOrderbyCountryData">
+          <canvas baseChart height="" [data]="pieChartOrderbyCountryData" [labels]="pieChartOrderbyCountryLabels"
+            [chartType]="pieChartOrderbyCountryType" (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"
+            [colors]="[{backgroundColor: ['#0f4f43','#16bc96', '#26dad2', '#dadada']}]">
+          </canvas>
+        </div>
+      </mat-card-content>
+      <div *ngIf="!boolPieChartOrderbyCountryData" class="text-center">No data to display</div>
+    </mat-card>
+  </div>
+
+  <div *ngIf="userDetails.userType==1" fxFlex.gt-sm="34" fxFlex.gt-xs="100" fxFlex="100">
+    <mat-card class="order_section chart-hover hover-effect sub-card">
+      <mat-card-content class="order_chart">
+        <mat-card-title class="ord_gen">Top5 Item < Moq</mat-card-title> <div
+            *ngIf="hBarboolTop5MoqArticleChartData">
+            <canvas baseChart [datasets]="hBarTop5MoqArticleChartData" [labels]="hBarTop5MoqArticleChartLabels"
+              [options]="horizontalBarChartOptions" [legend]="horizontalBarChartLegend"
+              [chartType]="horizontalBarChartType" (chartHover)="chartHovered($event)"
+              [colors]="horizontalBarChartColors" (chartClick)="chartClicked($event)">
+            </canvas>
+  </div>
+  </mat-card-content>
+  <div *ngIf="!hBarboolTop5MoqArticleChartData" class="text-center">No data to display</div>
+  </mat-card>
+</div>
+
+<div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+  <mat-card class="order_section chart-hover hover-effect sub-card">
+    <mat-card-content class="performance_chart">
+      <mat-card-title class="ord_gen">Top 10 FW Item Ordered - Men</mat-card-title>
+      <div *ngIf="hBarboolTop5MenChartData">
+        <canvas baseChart [datasets]="hBarTop5MenChartData" [labels]="hBarTop5MenChartLabels"
+          [options]="horizontalBarChartOptions" [legend]="horizontalBarChartLegend" [chartType]="horizontalBarChartType"
+          (chartHover)="chartHovered($event)" [colors]="horizontalBarChartColors" (chartClick)="chartClicked($event)">
+        </canvas>
+      </div>
+      <div *ngIf="!hBarboolTop5MenChartData" class="text-center">No data to display</div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+  <mat-card class="order_section chart-hover hover-effect sub-card">
+    <mat-card-content class="performance_chart">
+      <mat-card-title class="ord_gen">Top 10 Apparel  Item Ordered - Men</mat-card-title>
+      <div *ngIf="hBarboolTop5MenChartDataApeq">
+        <canvas baseChart [datasets]="hBarTop5MenChartDataApeq" [labels]="hBarTop5MenChartLabelsApeq"
+          [options]="horizontalBarChartOptions" [legend]="horizontalBarChartLegend" [chartType]="horizontalBarChartType"
+          (chartHover)="chartHovered($event)" [colors]="horizontalBarChartColors" (chartClick)="chartClicked($event)">
+        </canvas>
+      </div>
+      <div *ngIf="!hBarboolTop5MenChartDataApeq" class="text-center">No data to display</div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+  <mat-card class="order_section chart-hover hover-effect sub-card">
+    <mat-card-content class="performance_chart">
+      <mat-card-title class="ord_gen">Top 10 FW Item Ordered - Women</mat-card-title>
+      <div *ngIf="hBarboolTop5WomenChartData">
+        <canvas baseChart [datasets]="hBarTop5WomenChartData" [labels]="hBarTop5WomenChartLabels"
+          [options]="horizontalBarChartOptions" [legend]="horizontalBarChartLegend" [chartType]="horizontalBarChartType"
+          (chartHover)="chartHovered($event)" [colors]="horizontalBarChartColors" (chartClick)="chartClicked($event)">
+        </canvas>
+      </div>
+      <div *ngIf="!hBarboolTop5WomenChartData" class="text-center">No data to display</div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+  <mat-card class="order_section chart-hover hover-effect sub-card">
+    <mat-card-content class="performance_chart">
+      <mat-card-title class="ord_gen">Top 10 Apparel Item Ordered - Women</mat-card-title>
+      <div *ngIf="hBarboolTop5WomenChartDataApeq">
+        <canvas baseChart [datasets]="hBarTop5WomenChartDataApeq" [labels]="hBarTop5WomenChartLabelsApeq"
+          [options]="horizontalBarChartOptions" [legend]="horizontalBarChartLegend" [chartType]="horizontalBarChartType"
+          (chartHover)="chartHovered($event)" [colors]="horizontalBarChartColors" (chartClick)="chartClicked($event)">
+        </canvas>
+      </div>
+      <div *ngIf="!hBarboolTop5WomenChartDataApeq" class="text-center">No data to display</div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<!-- <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+  <mat-card class="order_section chart-hover hover-effect sub-card">
+    <mat-card-content class="performance_chart">
+      <mat-card-title class="ord_gen">Top 10 FW Item Ordered - Unisex</mat-card-title>
+      <div *ngIf="hBarboolTop5UnisexChartData">
+        <canvas baseChart [datasets]="hBarTop5UnisexChartData" [labels]="hBarTop5UnisexChartLabels"
+          [options]="horizontalBarChartOptions" [legend]="horizontalBarChartLegend" [chartType]="horizontalBarChartType"
+          (chartHover)="chartHovered($event)" [colors]="horizontalBarChartColors" (chartClick)="chartClicked($event)">
+        </canvas>
+      </div>
+      <div *ngIf="!hBarboolTop5UnisexChartData" class="text-center">No data to display</div>
+    </mat-card-content>
+  </mat-card>
+</div> -->
+
+<div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+  <mat-card class="order_section chart-hover hover-effect sub-card">
+    <mat-card-content class="performance_chart">
+      <mat-card-title class="ord_gen">Top 10 Accessories Ordered</mat-card-title>
+      <div *ngIf="hBarboolTop5UnisexChartDataApeq">
+        <canvas baseChart [datasets]="hBarTop5UnisexChartDataApeq" [labels]="hBarTop5UnisexChartLabelsApeq"
+          [options]="horizontalBarChartOptions" [legend]="horizontalBarChartLegend" [chartType]="horizontalBarChartType"
+          (chartHover)="chartHovered($event)" [colors]="horizontalBarChartColors" (chartClick)="chartClicked($event)">
+        </canvas>
+      </div>
+      <div *ngIf="!hBarboolTop5UnisexChartDataApeq" class="text-center">No data to display</div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+  <mat-card class="order_section chart-hover hover-effect sub-card">
+    <mat-card-content class="performance_chart">
+      <mat-card-title class="ord_gen">Top 10 FW Item - Kids</mat-card-title>
+      <div *ngIf="hBarboolTop5KidsChartData">
+        <canvas baseChart [datasets]="hBarTop5KidsChartData" [labels]="hBarTop5KidsChartLabels"
+          [options]="horizontalBarChartOptions" [legend]="horizontalBarChartLegend" [chartType]="horizontalBarChartType"
+          (chartHover)="chartHovered($event)" [colors]="horizontalBarChartColors" (chartClick)="chartClicked($event)">
+        </canvas>
+      </div>
+      <div *ngIf="!hBarboolTop5KidsChartData" class="text-center">No data to display</div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+
+
+</div>
+
+<!--Report section-->
+<div>
+  <mat-card>
+    <mat-card-content>
+      <mat-tab-group (selectedTabChange)="onTabChanged($event)">
+        <mat-tab label="Activity Report">
+          <div class="container-fluid">
+            <div class="row mar_btm">
+              <div class="col-md-12 mar_top">
+                <!-- <strong class="float-left">Activity Dashboard</strong> -->
+                <button class="float-right aty_export" type="button" mat-flat-button color="primary"
+                  (click)="getActivityExcelReport()">Export</button>
+              </div>
+            </div>
+
+            <div class="row ">
+              <div class="col-md-12 ">
+                <div class="row" *ngFor="let div of activityReportsKeys">
+                  <div class="col-lg-12 col-md-6 col-sm-6 mar_btm">
+                    <mat-card class="example-card mat-card-2 mar_0">
+                      <div class="normalize text-center">
+                        <span class="divison_left">{{div}}</span>
+                      </div>
+                      <mat-card-content class="pad_0">
+                        <div class="scrolling outer tab_pad zui-wrapper">
+                          <div class="inner zui-scroller">
+                            <table class="table-striped table-hover table-bordered zui-table">
+                              <tr class="tr_back">
+                                <th class="Foot_tbl zui-sticky-col">Gender<br> Business unit <br>Product Type</th>
+                                <th class="Foot_tbl" *ngFor="let activity of activityreports[div]">
+                                  {{activity.gen_name}}<br>
+                                  {{activity.rbu_name}}<br>
+                                  {{activity.product_name}}</th>
+
+                              </tr>
+                              <tr>
+                                <td class="divisin_col zui-sticky-col">SKU</td>
+                                <td class="txt_col" *ngFor="let activity of activityreports[div]">
+                                  {{activity.sku||0}}</td>
+
+                              </tr>
+
+                              <tr>
+                                <td class="divisin_col zui-sticky-col">Quantity</td>
+                                <td class="txt_col" *ngFor="let activity of activityreports[div]">
+                                  {{activity.qty||0}}</td>
+                              </tr>
+                              <tr>
+                                <td class="divisin_col zui-sticky-col">Price</td>
+                                <td class="txt_col" *ngFor="let activity of activityreports[div]">
+                                  {{activity.price||0 | number:'1.0-0'}}</td>
+                              </tr>
+                            </table>
+                          </div>
+                        </div>
+                      </mat-card-content>
+                    </mat-card>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div *ngIf="activityReportsKeys && activityReportsKeys.length==0">
+              No data to display
+            </div>
+
+          </div>
+        </mat-tab>
+
+        <mat-tab label="Order Summary">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12 mar_top">
+                <!-- <strong class="float-left">Order Summary</strong> -->
+                <div class="float-left">
+                  <mat-form-field class="ctry_select">
+                    <mat-label>Select country</mat-label>
+                    <mat-select [(ngModel)]="selectedCountry" name="country"
+                      (selectionChange)="onCountryChanged($event.value)">
+                      <mat-option *ngFor="let country of countries" [value]="country.name">
+                        {{country.name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <button class="float-right aty_export" type="button" mat-flat-button color="primary"
+                  (click)="onExportClicked('orderSummaryReport','country_name',selectedCountry)">Export</button>
+              </div>
+            </div>
+
+            <!-- <div class="row" *ngIf="orderSummary && orderSummary.length>0">
+              <div class="col-md-12 mar_btm">
+                <div class="normalize">
+                  <span class="divison_left">Country </span>
+              </div>
+                <table class="table table-striped table-hover table-bordered">
+                  <tr class="tr_back"> 
+                    <th class="Foot_tbl">Country name</th>
+                    <th class="Foot_tbl">Franchise name</th>
+                    <th class="Foot_tbl">Sku(s)</th>
+                    <th class="Foot_tbl">Quantity</th>
+                    <th class="Foot_tbl">Total Price</th>
+
+                  </tr>
+                  <tr *ngFor="let item of orderSummary">
+                    <td>{{item.country_name}}</td>
+                    <td>{{item.franchise_name}}</td>
+                    <td>{{item.sku || 0}}</td>
+                    <td>{{item.qty || 0}} </td>
+                    <td>{{item.total_price || 0}}</td>
+                  </tr>
+
+                </table>
+              </div>
+            </div> -->
+
+            <div class="row ">
+              <div class="col-md-12 ">
+                <div class="row" *ngIf="orderSummary && orderSummary.length>0">
+
+                  <div class="col-lg-12 col-md-6 col-sm-6 mar_btm">
+                    <mat-card class="example-card mat-card-2 mar_0">
+                      <div class="normalize text-center">
+                        <span class="divison_left">Order</span>
+                      </div>
+                      <mat-card-content class="pad_0">
+                        <div class="scrolling outer tab_pad zui-wrapper">
+                          <div class="inner zui-scroller">
+
+                            <table class="table-striped table-hover table-bordered">
+                              <tr class="tr_back">
+                                <th class="Foot_tbl">Country</th>
+                                <th class="Foot_tbl">Customer</th>
+                                <th class="Foot_tbl">Sku(s)</th>
+                                <th class="Foot_tbl">Quantity</th>
+                                <th class="Foot_tbl">Total Price</th>
+
+                              </tr>
+                              <tr *ngFor="let item of orderSummary">
+                                <td class="txt_col">{{item.country_name}}</td>
+                                <td class="txt_col">{{item.franchise_name}}</td>
+                                <td class="txt_col">{{item.sku || 0 }}</td>
+                                <td class="txt_col">{{item.qty || 0 }} </td>
+                                <td class="txt_col">{{item.total_price || 0 | number:'1.0-0'}}</td>
+                              </tr>
+
+                            </table>
+                          </div>
+                        </div>
+                      </mat-card-content>
+                    </mat-card>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="orderSummary && orderSummary.length==0">
+              No data to display
+            </div>
+          </div>
+        </mat-tab>
+
+        <!-- <mat-tab label="Monthly Order Review">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12 mar_top">
+                <div class="row">
+                  <div class="col-md-12">
+                    <button class="float-right aty_export" type="button" mat-flat-button color="primary"
+                      (click)="onExportClicked('monthlyOrderReport')">Export</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row ">
+              <div class="col-md-12 mar_bot">
+                <div class="row" *ngIf="monthlyReports && monthlyReports.length>0">
+                  <div class="col-lg-12 col-md-6 col-sm-6 mar_btm">
+                    <mat-card class="example-card mat-card-2 mar_0">
+                      <div class="normalize text-center">
+                        <span class="divison_left">Monthly</span>
+                      </div>
+                      <mat-card-content class="pad_0">
+                        <div class="scrolling outer tab_pad zui-wrapper">
+                          <div class="inner zui-scroller">
+                            <table class="table-striped table-hover table-bordered">
+                              <tr class="tr_back">
+                                <th class="Foot_tbl">Launch Month</th>
+                                <th class="Foot_tbl">Sku(s)</th>
+                                <th class="Foot_tbl">Quantity</th>
+                                <th class="Foot_tbl">Total Price</th>
+                              </tr>
+                              <tr *ngFor="let item of monthlyReports">
+                                <td class="txt_col">{{item.ord_launch_month}}</td>
+                                <td class="txt_col">{{item.sku || 0}}</td>
+                                <td class="txt_col">{{item.qty || 0}} </td>
+                                <td class="txt_col">{{item.total_price || 0}}</td>
+                              </tr>
+
+                            </table>
+                          </div>
+                        </div>
+                      </mat-card-content>
+                    </mat-card>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="monthlyReports && monthlyReports.length==0">
+              No data to display
+            </div>
+          </div>
+        </mat-tab> -->
+
+        <mat-tab label="Order Analysis">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12 mar_top">
+                <div class="row">
+                  <div class="col-md-12 ">
+                    <!-- <strong class="float-left">Order Analysis</strong> -->
+                    <button class="float-right aty_export" type="button" mat-flat-button color="primary"
+                      (click)="onExportClicked('orderAnalysisReport')">Export</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="row" *ngIf="orderAnalysis && orderAnalysis.length>0">
+              <div class="col-md-12">
+                <table class="table table-striped table-responsive">
+                  <tr>
+                    <th>Order No</th>
+                    <th>Franchise name</th>
+                    <th>Sku(s)</th>
+                    <th>Quantity</th>
+                    <th>Total Price</th>
+                    <th>Order status</th>
+                  </tr>
+                  <tr *ngFor="let item of orderAnalysis">
+                    <td>{{item.order_id}}</td>
+                    <td>{{item.franchise_name}}</td>
+                    <td>{{item.sku || 0}}</td>
+                    <td>{{item.qty || 0}} </td>
+                    <td>{{item.total_price || 0}}</td>
+                    <td>{{item.order_status || ''}}</td>
+                  </tr>
+
+                </table>
+              </div>
+            </div> -->
+
+            <div class="row ">
+              <div class="col-md-12 mar_bot">
+                <div class="row" *ngIf="orderAnalysis && orderAnalysis.length>0">
+                  <div class="col-lg-12 col-md-6 col-sm-6 mar_btm">
+                    <mat-card class="example-card mat-card-2 mar_0">
+                      <div class="normalize text-center">
+                        <span class="divison_left">Order</span>
+                      </div>
+                      <mat-card-content class="pad_0">
+                        <div class="scrolling outer tab_pad zui-wrapper">
+                          <div class="inner zui-scroller">
+                            <table class="table-striped table-hover table-bordered">
+                              <tr class="tr_back">
+                                <th class="Foot_tbl">Order No</th>
+                                <th class="Foot_tbl">Customer</th>
+                                <th class="Foot_tbl">Sku(s)</th>
+                                <th class="Foot_tbl">Quantity</th>
+                                <th class="Foot_tbl">Total Price</th>
+                                <th class="Foot_tbl">Order status</th>
+                              </tr>
+                              <tr *ngFor="let item of orderAnalysis">
+                                <td class="txt_col">{{item.order_no}}</td>
+                                <td class="txt_col">{{item.franchise_name}}</td>
+                                <td class="txt_col">{{item.sku || 0}}</td>
+                                <td class="txt_col">{{item.qty || 0}} </td>
+                                <td class="txt_col">{{item.total_price || 0 | number:'1.0-0'}}</td>
+                                <td class="txt_col">{{item.order_status || ''}}</td>
+                              </tr>
+
+                            </table>
+                          </div>
+                        </div>
+                      </mat-card-content>
+                    </mat-card>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="orderAnalysis && orderAnalysis.length==0">
+              No data to display
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
+
+</div>

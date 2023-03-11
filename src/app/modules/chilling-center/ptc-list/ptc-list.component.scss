@@ -1,0 +1,65 @@
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+.example-container {
+  height: 350px;
+  overflow: auto;
+}
+//   td, th {
+//     width: 25%;
+//   }
+
+.example-second-header-row {
+  font-style: italic;
+}
+
+.example-first-footer-row {
+  font-weight: bold;
+}
+
+.example-second-footer-row td {
+  color: #900000;
+}
+
+.mat-column-action {
+  flex: 0 0 100px;
+}
+
+.btn_right{
+  float: right;
+  background: #001e63;
+  border: none;
+  color: #fff;
+}
+.del_listseasoncolor{
+cursor: pointer; 
+color: #dc3545 !important;
+}
+.edit_listseasoncolor{
+cursor: pointer; 
+color: #ffc107 !important;
+}
+.tb_rows_data {
+height: 20px;
+line-height: 2.5;
+font-family: 'Roboto', Helvetica, Arial, Lucida, sans-serif !important;
+}
+.tb_head_row {
+height: 35px;
+line-height: 3;
+background: #90abe9;
+}
+
+.mat-header-cell {
+  color: #000 !important;
+  text-transform: capitalize;
+  font-size : 14px;
+}
+.table thead th {
+line-height: 3 !important;
+}

@@ -1,0 +1,83 @@
+<div class="container-fuild login-page" id="loginView">
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-4 mx-auto login-page">
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <h5 class="card-title text-center"></h5>
+                    <div class=" ">
+                        <div id="formContent">
+                            <div class="fadeIn first">
+                                <img src="assets/images/nandini-logo.png" style=" width: 100px; height: 100px" id="icon" alt="User Icon" class="img-fluid" alt="Responsive image" />
+                                
+                            </div>
+                            <div class="row" style="margin-left: 15%;">
+                                <!-- <p  font-size="15px" style="color:#1b387d">MILK BILLING SYSTEM</p>            -->
+                            </div>
+                            <div class="example-container">
+                                
+                                <form [formGroup]='loginForm' autocomplete="off">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <mat-form-field appearance="">
+                                                <mat-label>Email</mat-label>
+                                                <input matInput type="text" placeholder="user@gmail.com" formControlName="email" required>
+                                                <mat-error *ngIf="common.hasError(loginForm.controls.email, submitted)"  >Enter A Valid Email.</mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                        
+                                        <div class="col-md-12" *ngIf="checkOtp">
+                                            <mat-form-field appearance="">
+                                                <mat-label>OTP</mat-label>
+                                                <input matInput type="text" placeholder="OTP" formControlName="otp" required appNumbersOnly>
+                                                <mat-error *ngIf="common.hasError(loginForm.controls.otp, submitted)"  >Enter a OTP.</mat-error>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div class="col-md-12" *ngIf="emailValidated">
+                                            <mat-form-field appearance="">
+                                                <mat-label>Password</mat-label>
+                                                <input matInput type="password" placeholder="Password" formControlName="password" required>
+                                                <mat-error *ngIf="common.hasError(loginForm.controls.password, submitted)"  >Password is required</mat-error>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div class="col-md-12" *ngIf="checkOtp">
+                                            <mat-form-field appearance="">
+                                                <mat-label>Confirm Password</mat-label>
+                                                <input matInput type="password" placeholder="Password" formControlName="confirmPassword" required>
+                                                <mat-error *ngIf="common.hasError(loginForm.controls.confirmPassword, submitted)"  >Confirm Password is required</mat-error>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div class="col-md-12" *ngIf="!emailValidated">
+                                            <button class="btn btn-danger btn-block btn-round login-btm fadeIn fourth" (click)="validateEmail()">
+                                                Proceed
+                                            </button>
+                                        </div>
+                                        <div class="col-md-12" *ngIf="emailValidated">
+                                            <button class="btn btn-danger btn-block btn-round login-btm fadeIn fourth" (click)="onSubmitLoginForm()">
+                                                Login
+                                            </button>
+                                        </div>
+                                        <div class="row col-sm-12 noPadding">
+                                            <div class="col-sm-6 noLeftPadding">
+                                                <mat-checkbox formControlName="rememberMe">Remember Me</mat-checkbox>
+                                            </div>
+                                            <div class="col-sm-6 noRightPadding" style="text-align: right;">
+                                                <a href="" [routerLink]="['/forgot-password']" *ngIf="forgetPassword">
+                                                    forget password?
+                                                </a> 
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </form>
+                                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

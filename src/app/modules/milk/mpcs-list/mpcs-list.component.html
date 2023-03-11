@@ -1,0 +1,80 @@
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="card">
+      <div class="card-header card-header-info">
+        <div class="row">
+          <div class="col-sm-6">
+            <h4 class="card-title">MPCS/BMC List</h4>
+          </div>
+          <div class="col-sm-6">
+
+           
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="offset-md-9 col-md-3">
+            <mat-form-field>
+              <input matInput  placeholder="Search">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="mat-elevation-z8 ">
+          <div class="table-responsive">
+            <table class="table">
+              <table mat-table [dataSource]="mpcsList">
+                <ng-container matColumnDef="id">
+                  <th mat-header-cell *matHeaderCellDef> S.No. </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element; let i = index;">  {{element.id}}  </td>
+                </ng-container>
+                <!-- Position Column -->
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef> Name </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+                <!-- Weight Column -->
+                <ng-container matColumnDef="capacity">
+                  <th mat-header-cell *matHeaderCellDef> Capacity </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element"> {{element.capacity}} </td>
+                </ng-container>
+                <ng-container matColumnDef="total_cow_milk">
+                  <th mat-header-cell *matHeaderCellDef> Total Cow Milk(Ltrs) </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element"> {{element.total_cow_milk}} </td>
+                </ng-container>
+                <ng-container matColumnDef="total_buffalo_milk">
+                  <th mat-header-cell *matHeaderCellDef> Total Buffalo Milk(Ltrs) </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element"> {{element.total_buffalo_milk}} </td>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <!-- <ng-container matColumnDef="to_date">
+                  <th mat-header-cell *matHeaderCellDef> End Date </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element"> {{element.to_date | date}} </td>
+                </ng-container> -->
+                <ng-container matColumnDef="Actions">
+                  <th mat-header-cell *matHeaderCellDef> Actions </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element;let i = index">
+                    <!-- <mat-slide-toggle [(ngModel)]="seasonActiveStatus[element.id] " [matTooltip]="!element.active_season ? 'Activate The Season' : 'InActivate The Season'" matTooltipPosition="left" matTooltipClass="custom-tooltip" (change)="updateSeasonActiveStatus(element.id)"></mat-slide-toggle> -->
+                    <!-- <button  [disabled]="seasonActiveStatus[element.id] == true" class="primair"> Active</button>
+                    <button [disabled]="seasonActiv `eStatus[element.id] == false"  class="primair"> InActive</button> -->
+
+                    <a (click)="milkcollection(element.id)" class="edit_listseasoncolor edit"><i class="material-icons"
+                      matTooltip="Enter Data" matTooltipPosition="left" matTooltipClass="custom-tooltip">&#xef42;</i></a>
+                    <a (click)="deleteSeason(element.id)" class="delete del_listseasoncolor" *ngIf="element.active_season == 0"><i class="material-icons"
+                       matTooltip="Delete" matTooltipPosition="right" matTooltipClass="custom-tooltip">&#xE872;</i></a>
+                  </td>
+                </ng-container>
+
+                <tr class="tb_head_row" mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr class="tb_rows_data" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+              <mat-paginator #myPaginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

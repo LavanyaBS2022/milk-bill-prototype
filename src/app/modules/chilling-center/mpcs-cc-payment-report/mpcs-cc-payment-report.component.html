@@ -1,0 +1,124 @@
+<!--Filter to fetch customer details-->
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="card">
+      <div class="card-header card-header-info">
+        <div class="row">
+          <div class="col-sm-6">
+            <h4 class="card-title">Payment Report</h4>
+          </div>
+        </div>
+      </div>
+       <!-- <button (click)="getSalespersons()">chk</button> -->
+      <div class="card-body">
+        <form [formGroup]="farmersLedgerForm">
+          <div class="row">
+            <div class="col-md-3 mat-form-field--inline">
+              <mat-form-field appearance="">
+                <mat-label>From Date</mat-label>
+                <input matInput #input [matDatepicker]="datePicker2" [(ngModel)]="fromDate" (dateChange)="updateMinDate()" (focus)="datePicker2.open()" [max]="maxDate" placeholder="From Date" formControlName="fromDate">
+                <mat-datepicker-toggle matSuffix [for]="datePicker2"></mat-datepicker-toggle>
+                <mat-datepicker #datePicker2 (closed)="input.blur()"> </mat-datepicker>
+                <mat-error *ngIf="submitted && get.fromDate.errors"  >From Date is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3 mat-form-field--inline">
+              <mat-form-field appearance="">
+                <mat-label>To Date</mat-label>
+                <input matInput #input [matDatepicker]="datePicker" [(ngModel)]="toDate" (dateChange)="updateMinDate2()" (focus)="datePicker.open()" [max]="maxDate" placeholder="To Date" formControlName="toDate">
+                <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+                <mat-datepicker #datePicker (closed)="input.blur()"> </mat-datepicker>
+                <mat-error *ngIf="submitted && get.toDate.errors"  >To Date is required</mat-error>
+              </mat-form-field>
+            </div>
+           
+            
+           
+          </div>
+          <!-- <div class="row">
+            <div class="col-md-3 mat-form-field--inline">
+              <button type="submit" class="btn btn-primary btn-sm btn_save" (click)="onSubmit()" >Submit</button>
+
+            </div>
+          </div> -->
+
+         
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!--Customer List-->
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="card">
+      <div class="card-header card-header-info">
+        <div class="row">
+          <div class="col-sm-6">
+            <h4 class="card-title">Payment Details</h4>
+          </div>
+          <div class="col-sm-6">
+
+           
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <!-- <div class="row">
+          <div class="offset-md-9 col-md-3">
+            <mat-form-field>
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+            </mat-form-field>
+          </div>
+        </div> -->
+        <div class="row" style="margin-bottom: 16px;font-weight: bold;">
+          <div class="col-md-6" *ngIf="fromDate && toDate">
+           Period From : {{fromDate|date}} to {{toDate|date}}
+<!-- Period From {{}} -->
+          </div>
+          
+        </div>
+       
+
+        <div class="mat-elevation-z8 ">
+          <div class="table-responsive" *ngIf="selectedMpcs">
+            <table class="table">
+              <table mat-table [dataSource]="ledgerDetails">
+                <ng-container matColumnDef="slNo">
+                  <th mat-header-cell *matHeaderCellDef> SlNo </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element; let i = index;">  {{element.slNo}}  </td>
+                </ng-container>
+                <!-- Position Column -->
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef> Name </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+                <!-- Weight Column -->
+               
+                <ng-container matColumnDef="liters">
+                  <th mat-header-cell *matHeaderCellDef> Liters </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element; let i = index;">  {{element.liters}}  </td>
+                </ng-container>
+                <!-- Position Column -->
+                <ng-container matColumnDef="payment">
+                  <th mat-header-cell *matHeaderCellDef> Payment </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element"> {{element.payment}} </td>
+                </ng-container>
+              
+
+                <tr class="tb_head_row" mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr class="tb_rows_data" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+              <mat-paginator #myPaginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

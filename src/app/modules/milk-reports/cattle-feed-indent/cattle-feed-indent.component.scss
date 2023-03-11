@@ -1,0 +1,128 @@
+
+
+// tooltip
+// .custom-tooltip {
+//   background-color: #001e63 !important;
+//   font-size: 12px !important;
+//   position: relative;
+//   padding: 8px 12px !important;
+//   color: #fff !important;
+//   border: 2px solid #001e63;
+//   transition: all .3s ease;
+//   text-transform: capitalize;
+//   text-decoration: none;
+//   &:before {
+//     content: "";
+//     position: absolute;
+//     opacity: 0;
+//     pointer-events: none;
+//     left: 50%;
+//     transform: translate3d(-50%,0%,0);
+//     transition: all .3s ease;
+//     transition-delay: 1.2s;
+//     width: 0;
+//     height: 0;
+//     border-style: solid;
+//     border-width: 10px 10px 0 10px;
+//     border-color: #282828 transparent transparent transparent;
+//   }
+//   &:after {
+//     text-transform: none;
+//     content: attr(data-tooltip);
+//     font-size: 12px;
+//     position: absolute;
+//     color: #fff;
+//     background: #282828;
+//     padding: 8px 12px !important;
+//     width: -webkit-max-content;
+//     width: -moz-max-content;
+//     width: max-content;
+//     max-width: 200px;
+//     opacity: 0;
+//     pointer-events: none;
+//     left: 50%;
+//     top: 0;
+//     border-radius: 4px;
+//     transform: translate3d(-50%,0%,0);
+//     transition: all .3s ease;
+//     transition-delay: 1.2s;
+//   }
+//   &:hover {
+//     background-color: rgba(0,0,0,0.12);
+//     &:before, &:after {
+//       opacity: 1;
+//     }
+//     &:before {
+//       transform: translate3d(-50%,calc(-100% - 18px),0);
+//     }
+//     &:after {
+//       transform: translate3d(-50%,calc(-100% - 16px),0);
+//     }
+//   } 
+// }
+
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  .example-container {
+    height: 350px;
+    overflow: auto;
+  }
+//   td, th {
+//     width: 25%;
+//   }
+  
+  .example-second-header-row {
+    font-style: italic;
+  }
+  
+  .example-first-footer-row {
+    font-weight: bold;
+  }
+  
+  .example-second-footer-row td {
+    color: #900000;
+  }
+  
+  .mat-column-action {
+    flex: 0 0 100px;
+  }
+  
+  .btn_right{
+    float: right;
+    background: #001e63;
+    border: none;
+    color: #fff;
+}
+.del_listseasoncolor{
+  cursor: pointer; 
+  color: #dc3545 !important;
+}
+.edit_listseasoncolor{
+  cursor: pointer; 
+  color: #ffc107 !important;
+}
+.tb_rows_data {
+  height: 20px;
+  line-height: 2.5;
+  font-family: 'Roboto', Helvetica, Arial, Lucida, sans-serif !important;
+}
+.tb_head_row {
+  height: 35px;
+  line-height: 3;
+  background: #90abe9;
+}
+
+.mat-header-cell {
+    color: #000 !important;
+    text-transform: capitalize;
+    font-size : 14px;
+}
+.table thead th {
+  line-height: 3 !important;
+}

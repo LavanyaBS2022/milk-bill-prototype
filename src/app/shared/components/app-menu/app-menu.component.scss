@@ -1,0 +1,122 @@
+app-menu {
+  ul {
+    li {
+      &.active {
+        color: #0538fb;
+        background: #e2e2e2;
+        font-weight: bold;
+      }
+    }
+  }
+  .menu-toolbar {
+    top: 40px;
+    height: auto;
+    background: #FFFFFF;
+    color: #000000
+  }
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    position: relative;
+    &.menu {
+      float: left;
+      height: 48px;
+      padding-right: 45px;
+      padding-left: 47px;
+      li {
+        float: left;
+        a {
+          border-bottom: 2px solid;
+          height: 48px;
+          -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+          border-color: transparent;
+          margin: 0 6px;
+          color: #fff;
+          &:hover {
+            font-weight: bold;
+            border-bottom: 2px solid #fff;
+          }
+          &.active {
+            font-weight: bold;
+            border-bottom: 2px solid #fff;
+          }
+        }
+      }
+    }
+    li {
+      margin: 0;
+      display: inline-block;
+      a {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        padding: 5px 11px;
+        height: 44px;
+        font-size: 16px;
+        text-decoration: none;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        .mat-icon {
+          font-size: 16px;
+          height: 20px;
+          line-height: 20px;
+          width: 20px;
+          margin-right: 2px;
+        }
+      }
+    }
+  }
+  ul.right-ul {
+    position: absolute;
+    right: 10px;
+  }
+  .patient-search-input {
+    width: 350px;
+    padding-left: 10px;
+    [mat-icon-button] {
+      background-color: #39cadd;
+      border-radius: unset;
+      color: white;
+    }
+    .mat-form-field-flex {
+      padding-left: 10px;
+    }
+    .mat-form-field-wrapper {
+      .mat-form-field-underline {
+        background-color: #42badf;
+        height: 2px;
+      }
+    }
+  }
+  .mat-form-field-label {
+    font-size: 14px !important;
+    top: 25px !important;
+    color: #ccc !important;
+  }
+  .mat-icon {
+    font-size: 13px !important;
+    position: relative;
+    top: 5px;
+  }
+}
+
+.mat-menu-panel.app-menu-item {
+  min-width: 220px;
+}
+
+.mat-menu-content .mat-menu-item .mat-icon {
+    font-size: 14px;
+    position: relative;
+    top: 4px;
+    margin-right: 1px;
+  }
+

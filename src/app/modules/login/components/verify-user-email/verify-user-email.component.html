@@ -1,0 +1,30 @@
+<!-- <h1 *ngIf="isVerifiedStatus">
+  {{msg}}
+</h1>
+<h4 *ngIf="isVerifiedStatus">
+  Now you can login to portal using email {{userEmai}}
+</h4>
+
+<h1 *ngIf="!isVerifiedStatus">
+  {{msg}}
+</h1> -->
+
+<div class="email-verification email-page-backcolor">
+    <div class="col-md-5 email-verification-box ">
+        <div class="card email-card-box">
+            <div class="m-t-30 card-body">
+                <div class="text-center">
+                    <p class="text-muted m-b-30 email-verify">{{msg}}</p>
+                </div>
+                <div class="panel-body text-center">
+                    <img src="assets/images/email-verify.png" class="light-logo" title="Email verified">
+                    <p class="text-muted m-t-30 m-b-30"> Now you can login to portal using email.</p>
+                </div>
+                <div class="text-center ">
+                    <a mat-raised-button color="danger" [routerLink]="['/dashboard']" class="btn btn-danger btn_cancel btn-rounded waves-effect waves-light m-b-40">Login to dashboard</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

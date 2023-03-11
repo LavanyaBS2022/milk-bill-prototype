@@ -1,0 +1,1470 @@
+<div>
+  <!-- <div class="page-header" >
+    <h4>
+       Milk Procured 
+    </h4>
+  </div> -->
+   
+
+  <div class="row" >
+    <div class="col-md-6">
+      <mat-card>
+        <mat-card-content>
+          <mat-card-title class="ord_gen">Today's Milk Procured
+          </mat-card-title>
+          <table class="heavyTable table1">
+            <tr>
+              <th>Good</th>
+              <th>Low Snf</th>
+            </tr>
+            <tr>
+              <td>{{todayMilkQty| number:'1.0-0'}}</td>
+              <td>{{ todayLowSnf | number:'1.0-0'}}</td>
+            </tr>
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="col-md-6">
+      <mat-card>
+        <mat-card-content>
+          <mat-card-title class="ord_gen">Monthly Milk Procured
+          </mat-card-title>
+          <table class="heavyTable table1">
+            <tr>
+              <th>Good</th>
+              <th>Low Snf</th>
+            </tr>
+            
+            <tr>
+              <td>{{monthlyGoodQty| number:'1.0-0'}}</td>
+              <td>{{ monthlyLowSnf | number:'1.0-0'}}</td>
+            </tr>
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <!-- <div class="row" *ngIf="logUser==2">
+        <div class="col-md-6" *ngFor="let item of categoryOrderdata | keyvalue">
+        <mat-card>
+          <mat-card-content>
+            <mat-card-title class="ord_gen">Category orders by Customers by value Season-{{item.key}} </mat-card-title>
+            <table class="heavyTable table1">
+            <tr>
+              <th>Category</th>
+              <th>Amount</th>
+            </tr>
+            <tr *ngFor="let cdata of item.value">
+              <td>{{cdata.category_name}}</td>
+              <td>{{cdata.totalorderamount || 0 | number:'1.0-0'}}</td>
+            </tr>
+            <tr>
+              <td><b>Total</b></td>
+              <td><b>{{getSum(item.value,'totalorderamount')|| 0 | number:'1.0-0'}}</b></td>
+            </tr>
+           </table>
+          </mat-card-content>
+        </mat-card>
+        </div>
+       </div> -->
+
+  <!-- <div class="row" *ngIf="logUser==2">
+        <div class="col-md-6" *ngFor="let item of categoryOrderdata | keyvalue">
+        <mat-card>
+          <mat-card-content>
+            <mat-card-title class="ord_gen">Category orders by Customers by Qty Season-{{item.key}} </mat-card-title>
+            <table class="heavyTable table1">
+            <tr>
+              <th>Category</th>
+              <th>Quantity</th>
+            </tr>
+            <tr *ngFor="let cdata of item.value">
+              <td>{{cdata.category_name}}</td>
+              <td>{{cdata.totalquantity || 0 | number:'1.0-0'}}</td>
+            </tr>
+            <tr>
+              <td><b>Total</b></td>
+              <td><b>{{getSum(item.value,'totalquantity')}}</b></td>
+            </tr>
+           </table>
+          </mat-card-content>
+        </mat-card>
+        </div>
+       </div> -->
+
+  <div class="row" *ngIf="logUser==2">
+    <div class="col-md-6">
+      <mat-card>
+        <mat-card-content>
+          <mat-card-title class="ord_gen">GENDER SPLIT BY LOCAL CURRENCY EXCLUDE VAT -({{seasonName}}) </mat-card-title>
+          <table class="heavyTable table1">
+            <tr>
+              <th></th>
+              <th *ngFor="let gen of genderList">{{gen.name}}</th>
+              <th>Total</th>
+            </tr>
+            <tr *ngFor="let div of divisionList">
+              <td><b>{{div.name}}</b></td>
+              <td *ngFor="let gen of genderList">
+                {{genderAnalise(div.id,gen.id,'amt',1)|| 0 | number:'1.0-0'}}
+              </td>
+              <td>{{getSum(gropupBYgenderCur[div.id],'total_amount')|| 0 | number:'1.0-0'}}</td>
+            </tr>
+            <tr>
+
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-md-6">
+      <mat-card>
+        <mat-card-content>
+          <mat-card-title class="ord_gen">GENDER SPLIT BY QUANTITY - ({{seasonName}}) </mat-card-title>
+          <table class="heavyTable table1">
+            <tr>
+              <th></th>
+              <th *ngFor="let gen of genderList">{{gen.name}}</th>
+              <th>Total</th>
+            </tr>
+            <tr *ngFor="let div of divisionList">
+              <td><b>{{div.name}}</b></td>
+              <td *ngFor="let gen of genderList">
+                {{genderAnalise(div.id,gen.id,'qty',1)|| 0 | number:'1.0-0'}}
+              </td>
+              <td>{{getSum(gropupBYgenderCur[div.id],'total_qty')}}</td>
+            </tr>
+            <tr>
+
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div class="row" *ngIf="logUser==2">
+    <div class="col-md-6">
+      <mat-card>
+        <mat-card-content>
+          <mat-card-title class="ord_gen">SEASONAL ORDERS BY SKU COUNT - ({{seasonName}}) </mat-card-title>
+          <table class="heavyTable table1">
+            <tr>
+              <th></th>
+              <th *ngFor="let gen of genderList">{{gen.name}}</th>
+              <th>Total</th>
+            </tr>
+            <tr *ngFor="let div of divisionList">
+              <td><b>{{div.name}}</b></td>
+              <td *ngFor="let gen of genderList">
+                {{genderAnalise(div.id,gen.id,'sku',1)|| 0 | number:'1.0-0'}}
+              </td>
+              <td>{{getSum(gropupBYgenderCur[div.id],'total_sku')}}</td>
+            </tr>
+            <tr>
+              <!-- let item of divisionGenderData[div.id] -->
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="logUser==2">
+    <div class="col-md-12">
+      <mat-card>
+        <mat-card-content>
+          <mat-card-title class="ord_gen">Orders Launch Month by Customer by local currency - ({{seasonName}})
+          </mat-card-title>
+          <table class="heavyTable table1">
+            <tr>
+              <th *ngFor="let item of monthlyReports">{{item.ord_launch_mon}}</th>
+              <th>Total</th>
+            </tr>
+            <tr>
+              <td *ngFor="let item of monthlyReports">{{item.total_price|| 0 | number:'1.0-0'}}</td>
+              <td><b>{{getSum(monthlyReports,'total_price')|| 0 | number:'1.0-0'}}</b></td>
+            </tr>
+            <tr>
+              <!-- let item of divisionGenderData[div.id] -->
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="logUser==2">
+    <div class="col-md-12">
+      <mat-card>
+        <mat-card-content>
+          <mat-card-title class="ord_gen">Orders Launch Month by Customer by local Qty - ({{seasonName}})
+          </mat-card-title>
+          <table class="heavyTable table1">
+            <tr>
+              <th *ngFor="let item of monthlyReports">{{item.ord_launch_mon}}</th>
+              <th>Total</th>
+            </tr>
+            <tr>
+              <td *ngFor="let item of monthlyReports">{{item.qty?item.qty:0}}</td>
+              <td><b>{{getSum(monthlyReports,'qty')}}</b></td>
+            </tr>
+            <tr>
+              <!-- let item of divisionGenderData[div.id] -->
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+
+  <!---------------------------------------------- graph is shown here ---------------------------------->
+
+  <div class="row" >
+    <div class="col-md-6">
+      <mat-card class="order_section chart-hover hover-effect sub-card">
+        <mat-card-content class="performance_chart">
+          <mat-card-title class="ord_gen">Quantity Wise Sales of February Month<br /><small>Click color icons
+              for more info</small></mat-card-title>
+          <div *ngIf="hBarboolTop5MenChartData">
+            <canvas baseChart [datasets]="hBarTop5MenChartData" [labels]="hBarTop5MenChartLabels"
+              [options]="horizontalBarChartOptions" [legend]="horizontalBarChartLegend"
+              [chartType]="horizontalBarChartType" (chartHover)="chartHovered($event)"
+              [colors]="horizontalBarChartColors" (chartClick)="chartClicked($event)">
+            </canvas>
+          </div>
+          <div *ngIf="!hBarboolTop5MenChartData" class="text-center">No data to display</div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="col-md-6">
+      <mat-card class="order_section chart-hover hover-effect sub-card">
+        <mat-card-content class="performance_chart">
+          <mat-card-title class="ord_gen">FAT & SNF % of February Month<br /><small>Click color
+              icons for more info</small></mat-card-title>
+          <div *ngIf="hBarboolTop5MenChartDataApeq">
+            <canvas baseChart [datasets]="hBarTop5MenChartDataApeq" [labels]="hBarTop5MenChartLabels"
+              [options]="horizontalBarChartOptions" [legend]="horizontalBarChartLegend"
+              [chartType]="horizontalBarChartType" (chartHover)="chartHovered($event)"
+              [colors]="horizontalBarChartColors" (chartClick)="chartClicked($event)">
+            </canvas>
+          </div>
+          <div *ngIf="!hBarboolTop5MenChartDataApeq" class="text-center">No data to display</div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div class="row" >
+    <div class="col-md-6" *ngIf="hBarTop5WomenChartData.length>0">
+      <mat-card class="order_section chart-hover hover-effect sub-card">
+        <mat-card-content class="performance_chart">
+          <mat-card-title class="ord_gen">Top Pourer of the week<br /><small>Click color icons
+              for more info</small></mat-card-title>
+          <div *ngIf="hBarboolTop5WomenChartData">
+            <canvas baseChart [datasets]="hBarTop5WomenChartData" [labels]="hBarTop5WomenChartLabels"
+              [options]="horizontalBarChartOptions" [legend]="horizontalBarChartLegend"
+              [chartType]="horizontalBarChartType" (chartHover)="chartHovered($event)"
+              [colors]="horizontalBarChartColors" (chartClick)="chartClicked($event)">
+            </canvas>
+          </div>
+          <div *ngIf="!hBarboolTop5WomenChartData" class="text-center">No data to display</div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-md-6" *ngIf="logUser==2">
+      <mat-card class="order_section chart-hover hover-effect sub-card">
+        <mat-card-content class="performance_chart">
+          <mat-card-title class="ord_gen">Last one Week Low SNF			<br /><small>Click color
+              icons for more info</small></mat-card-title>
+          <div *ngIf="hBarboolTop5WomenChartDataApeq">
+            <canvas baseChart [datasets]="hBarTop5WomenChartDataApeq" [labels]="hBarTop5WomenChartLabelsApeq"
+              [options]="horizontalBarChartOptions" [legend]="horizontalBarChartLegend"
+              [chartType]="horizontalBarChartType" (chartHover)="chartHovered($event)"
+              [colors]="horizontalBarChartColors" (chartClick)="chartClicked($event)">
+            </canvas>
+          </div>
+          <div *ngIf="!hBarboolTop5WomenChartDataApeq" class="text-center">No data to display</div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="logUser==2">
+    <div class="col-md-6">
+      <mat-card class="order_section chart-hover hover-effect sub-card">
+        <mat-card-content class="performance_chart">
+          <mat-card-title class="ord_gen">Top 10 FW Item Ordered- Kids ({{seasonName}})<br /><small>Click color icons
+              for more
+              info</small></mat-card-title>
+          <div *ngIf="hBarboolTop5KidsChartData">
+            <canvas baseChart [datasets]="hBarTop5KidsChartData" [labels]="hBarTop5KidsChartLabels"
+              [options]="horizontalBarChartOptions" [legend]="horizontalBarChartLegend"
+              [chartType]="horizontalBarChartType" (chartHover)="chartHovered($event)"
+              [colors]="horizontalBarChartColors" (chartClick)="chartClicked($event)">
+            </canvas>
+          </div>
+          <div *ngIf="!hBarboolTop5KidsChartData" class="text-center">No data to display</div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+</div>
+
+<!-- ***********************************************ADMIN SECTION STARTS HERE ********************************************** -->
+
+<div>
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="seasonForm">
+        <div class="row" *ngIf="logUser==1">
+          <div class="col-md-3">
+            <mat-form-field appearance="">
+              <mat-select placeholder="Current " [(ngModel)]="curseasonNewId" formControlName="curseasonNewId">
+                <mat-option *ngFor="let option of seasonList" [value]="option.id"
+                  (click)="getSeasonByCountryAndTopValue()">{{ option.name }}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="submitted && get.seasonId.errors">Season is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-3">
+            <mat-form-field appearance="">
+              <mat-select placeholder="Previous Season" [(ngModel)]="prevseasonNewId" formControlName="prevseasonNewId">
+                <mat-option *ngFor="let option of seasonList" [value]="option.id"
+                  (click)="getSeasonByCountryValue($event.value)">{{ option.name }}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="submitted && get.seasonId.errors">Season is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-3">
+            <mat-form-field appearance="">
+              <mat-select placeholder="Select Country" [(ngModel)]="selectedCountryList" multiple
+                formControlName="selectedCountryList">
+                <!-- <mat-option >None</mat-option> -->
+                <mat-option *ngFor="let option of countries" [value]="option.id"
+                  (click)="getCountryWiseData($event.value)">{{ option.name }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-3">
+            <mat-form-field appearance="">
+              <mat-select placeholder="Select Channel" [(ngModel)]="selectedChannel" formControlName="selectedChannel">
+                <!-- <mat-option >None</mat-option> -->
+                <mat-option *ngFor="let option of channelList" [value]="option.id"
+                  (click)="getCountryWiseData($event.value)">{{ option.name }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-3">
+            <mat-form-field appearance="">
+              <mat-select placeholder="Select Store Type" [(ngModel)]="selectedStoreType" [multiple]=true
+                formControlName="selectedStoreType">
+                <!-- <mat-option >None</mat-option> -->
+                <mat-option *ngFor="let option of storeList" [value]="option.id" 
+                  (click)="getCountryWiseData($event.value)">{{ option.name }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  <div class="row" *ngIf="logUser==1">
+    <div class="col-md-6">
+
+      <mat-card>
+        <mat-card-content>
+          <mat-card-title class="ord_gen">SEASON BY COUNTRY VALUE</mat-card-title>
+
+          <table class="heavyTable table1">
+            <!-- <tr>
+              <th colspan="4">
+                <h1>FY20{{this.seasonData}}</h1>
+              </th>
+            </tr> -->
+            <tr>
+              <th>Country</th>
+              <th>{{getSeasonName(orderByCountryData.curyearPrevSeason)}}</th>
+              <th>{{getSeasonName(orderByCountryData.activeSeason)}}</th>
+              <th>Total (SGD)</th>
+              <!-- <th>Total (SGD)</th> -->
+            </tr>
+            <tr *ngFor="let cnt of countries">
+              <td>{{cnt.name}}</td>
+              <td>{{adminOrderAnalysis(cnt.id,'amt',2)|| 0 | number:'1.0-0'}}</td>
+              <td>{{adminOrderAnalysis(cnt.id,'amt',1)|| 0 | number:'1.0-0'}}</td>
+              <td>{{adminOrderAnalysis(cnt.id,'amt','tot')|| 0 |currency: 'USD' : 'symbol' : '1.0-0'}}</td>
+            </tr>
+
+            <tr style="font-weight: bold;">
+              <td>Total (SGD)</td>
+              <td>{{adminOrderAnalysis(0,'amt',3)|| 0 | currency: 'USD' : 'symbol' : '1.0-0'}}</td>
+              <!-- <td></td> -->
+              <td>{{adminOrderAnalysis(0,'amt',4)|| 0 |currency: 'USD' : 'symbol' : '1.0-0'}}</td>
+              <td>
+                {{adminOrderAnalysis(0,'amt',3)+adminOrderAnalysis(0,'amt',4)||0|currency: 'USD' : 'symbol' : '1.0-0'}}
+              </td>
+            </tr>
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="col-md-6">
+      <mat-card>
+        <mat-card-content>
+          <mat-card-title class="ord_gen">SEASON BY COUNTRY QUANTITY</mat-card-title>
+          <table class="heavyTable table1">
+            <!-- <tr>
+              <th colspan="4">
+                <h1>FY20{{this.seasonData}}</h1>
+              </th>
+            </tr> -->
+            <tr>
+              <th>Country</th>
+              <th>{{getSeasonName(orderByCountryData.curyearPrevSeason)}}</th>
+              <th>{{getSeasonName(orderByCountryData.activeSeason)}}</th>
+              <th>Total</th>
+            </tr>
+            <tr *ngFor="let cnt of countries">
+              <td>{{cnt.name}}</td>
+              <td>{{adminOrderAnalysis(cnt.id,'qty',2)|| 0 | number:'1.0-0'}}</td>
+              <td>{{adminOrderAnalysis(cnt.id,'qty',1)|| 0 | number:'1.0-0'}}</td>
+              <td>{{adminOrderAnalysis(cnt.id,'qty','tot')|| 0 | number:'1.0-0'}}</td>
+            </tr>
+            <tr style="font-weight: bold;">
+              <td>Total</td>
+              <td>{{adminOrderAnalysis(0,'qty',3)|| 0 | number:'1.0-0'}}</td>
+              <td>{{adminOrderAnalysis(0,'qty',4)|| 0 | number:'1.0-0'}}</td>
+              <td>
+                {{adminOrderAnalysis(0,'qty',3)+adminOrderAnalysis(0,'qty',4)||0| number:'1.0-0'}}
+              </td>
+            </tr>
+
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  
+  <div class="row" *ngIf="logUser==1">
+    <div class="col-md-12">
+      <mat-card>
+        <mat-card-content>
+          <mat-card-title class="ord_gen">Season Category Orders By Quantity
+            <b>({{getSeasonName(curseasonNewId)}} &
+              {{getSeasonName(prevseasonNewId)}})</b></mat-card-title>
+          <table class="heavyTable table1">
+            <tr>
+              <th><b>Category</b></th>
+              <th *ngFor="let cnt of countries" colspan="2">{{cnt.name}}</th>
+              <th><b>Total</b></th>
+              <th><b>Total</b></th>
+            </tr>
+            <tr>
+              <th><b>Season</b></th>
+
+              <div *ngFor="let cnt of countries" style="display: contents;">
+                <th style="padding-top: 16px;">{{getSeasonName(orderByCountryData.curyearPrevSeason)}}</th>
+                <th style="border-right: 1px solid #38678f;padding-top: 16px;">
+                  {{getSeasonName(orderByCountryData.activeSeason)}}
+                </th>
+              </div>
+
+
+              <th>{{getSeasonName(orderByCountryData.curyearPrevSeason)}}</th>
+              <th style="border-right: 1px solid #38678f;">
+                {{getSeasonName(orderByCountryData.activeSeason)}}
+              </th>
+            </tr>
+            <tr *ngFor="let cat of cateogoryList">
+              <td>{{cat.name}}</td>
+              <div *ngFor="let cnt of countries" style="display: contents;">
+                <td>
+                  {{adminCategoryAnalusis(cat.id,'qty',2,cnt.id)|| 0 | number:'1.0-0'}}
+                </td>
+                <td style="border-right: 1px solid #cccccc;">
+                  {{adminCategoryAnalusis(cat.id,'qty',1,cnt.id)|| 0 | number:'1.0-0'}}
+                </td>
+              </div>
+
+              <!-- <td *ngFor="let cnt of countries">{{adminCategoryAnalusis(cat.id,'qty',1,cnt.id)|| 0 | number:'1.0-0'}}
+              </td> -->
+              <td>
+                <b>{{adminCategoryAnalusis(cat.id,'tot_qty',2)|| 0 | number:'1.0-0'}}</b>
+              </td>
+              <td>
+                <b>{{adminCategoryAnalusis(cat.id,'tot_qty',1)|| 0 | number:'1.0-0'}}</b>
+              </td>
+            </tr>
+            <tr>
+              <td><b>Total</b></td>
+              <!-- <td *ngFor="let cnt of countries">
+                <b>{{adminCategoryAnalusis(0,'tot_qty2',1,cnt.id)|| 0 | number:'1.0-0'}}</b></td> -->
+              <div *ngFor="let cnt of countries" style="display: contents;">
+                <td>
+                  <b> {{adminCategoryAnalusis(0,'tot_qty2',2,cnt.id)|| 0 | number:'1.0-0'}}</b>
+                </td>
+                <td style="border-right: 1px solid #cccccc;">
+                  <b>{{adminCategoryAnalusis(0,'tot_qty2',1,cnt.id)|| 0 | number:'1.0-0'}}</b>
+                </td>
+              </div>
+              <td><b>{{this.categoryOrdersBycountry.totalQty1||0| number:'1.0-0'}}</b></td>
+              <td><b>{{this.categoryOrdersBycountry.totalQty||0| number:'1.0-0'}}</b></td>
+            </tr>
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="logUser==1">
+    <div class="col-md-12">
+      <mat-card>
+        <mat-card-content>
+          <mat-card-title class="ord_gen">Season Gender Split By
+            Value<b>({{getSeasonName(curseasonNewId)}} &
+              {{getSeasonName(prevseasonNewId)}})</b> </mat-card-title>
+          <table class="heavyTable table1">
+            <tr>
+              <th>All Countries</th>
+              <th *ngFor="let gen of genderList" colspan="2">{{gen.name}}</th>
+              <th style="text-align: center;">Total (SGD)</th>
+              <th style="text-align: center;">Total (SGD)</th>
+            </tr>
+            <tr>
+              <th><b>Season</b></th>
+
+              <div *ngFor="let cnt of genderList" style="display: contents;">
+                <th style="padding-top: 16px;">{{getSeasonName(orderByCountryData.curyearPrevSeason)}}</th>
+                <th style="border-right: 1px solid #38678f;padding-top: 16px;">
+                  {{getSeasonName(orderByCountryData.activeSeason)}}
+                </th>
+              </div>
+
+
+              <th>{{getSeasonName(orderByCountryData.curyearPrevSeason)}}</th>
+              <th style="border-right: 1px solid #38678f;">
+                {{getSeasonName(orderByCountryData.activeSeason)}}
+              </th>
+            </tr>
+            <tr *ngFor="let div of divisionList">
+              <td><b>{{div.name}}</b></td>
+              <!-- <td *ngFor="let gen of genderList">
+                {{admingenderAnalise(div.id,gen.id,'amt',1)|| 0 | number:'1.0-0'}}
+              </td> -->
+              <div *ngFor="let gen of genderList" style="display: contents;">
+                <td>
+                  {{admingenderAnalise(div.id,gen.id,'amt',2)|| 0 | number:'1.0-0'}}
+                </td>
+                <td style="border-right: 1px solid #cccccc;">
+                  {{admingenderAnalise(div.id,gen.id,'amt',1)|| 0 | number:'1.0-0'}}
+                </td>
+              </div>
+
+              <td style="text-align: center;">
+                {{admingenderAnalise(div.id,0,'tot_amt',2)|| 0 |currency: 'USD' : 'symbol' : '1.0-0'}}
+              </td>
+              <td style="text-align: center;">
+                {{admingenderAnalise(div.id,0,'tot_amt',1)|| 0 |currency: 'USD' : 'symbol' : '1.0-0'}}
+              </td>
+            </tr>
+            <tr style="font-weight: bold;">
+              <td>Total (SGD)</td>
+              <!-- <td *ngFor="let cnt of countries">
+                <b>{{adminCategoryAnalusis(0,'tot_qty2',1,cnt.id)|| 0 | number:'1.0-0'}}</b></td> -->
+              <div *ngFor="let gen of genderList" style="display: contents;">
+                <td>
+                  {{admingenderAnaliseTot(gen.id,'amt',2)||0|currency: 'USD' : 'symbol' : '1.0-0'}}
+                </td>
+                <td style="border-right: 1px solid #cccccc;">
+                  {{admingenderAnaliseTot(gen.id,'amt',1)||0|currency: 'USD' : 'symbol' : '1.0-0'}}
+                </td>
+              </div>
+              <td>
+                {{admingenderAnaliseTot(0,'tot_amt',2)||0|currency: 'USD' : 'symbol' : '1.0-0'}}
+              </td>
+              <td style="border-right: 1px solid #cccccc;">
+                {{admingenderAnaliseTot(0,'tot_amt',1)||0|currency: 'USD' : 'symbol' : '1.0-0'}}
+              </td>
+              <!-- <td><b>{{this.categoryOrdersBycountry.totalQty1||0| number:'1.0-0'}}</b></td>
+              <td><b>{{this.categoryOrdersBycountry.totalQty||0| number:'1.0-0'}}</b></td> -->
+            </tr>
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+  </div>
+
+  <div class="row" *ngIf="logUser==1">
+    <div class="col-md-6">
+      <mat-card>
+        <mat-card-content>
+          <mat-card-title class="ord_gen">Season Gender Split By SKU
+            <b>({{getSeasonName(curseasonNewId)}} &
+              {{getSeasonName(prevseasonNewId)}})</b> </mat-card-title>
+          <table class="heavyTable table1">
+            <tr>
+              <th>All Countries</th>
+              <th *ngFor="let gen of genderList" colspan="2">{{gen.name}}</th>
+              <th>Total</th>
+              <th>Total</th>
+            </tr>
+            <tr>
+              <th><b>Season</b></th>
+
+              <div *ngFor="let cnt of genderList" style="display: contents;">
+                <th style="padding-top: 16px;">{{getSeasonName(orderByCountryData.curyearPrevSeason)}}</th>
+                <th style="border-right: 1px solid #38678f;padding-top: 16px;">
+                  {{getSeasonName(orderByCountryData.activeSeason)}}
+                </th>
+              </div>
+              <th>{{getSeasonName(orderByCountryData.curyearPrevSeason)}}</th>
+              <th style="border-right: 1px solid #38678f;">
+                {{getSeasonName(orderByCountryData.activeSeason)}}
+              </th>
+
+              <!-- <th></th> -->
+            </tr>
+            <tr *ngFor="let div of divisionList">
+              <td><b>{{div.name}}</b></td>
+              <!-- <td *ngFor="let gen of genderList">
+                {{admingenderAnalise(div.id,gen.id,'sku',1)|| 0 | number:'1.0-0'}}
+              </td> -->
+              <div *ngFor="let gen of genderList" style="display: contents;">
+                <td>
+                  {{admingenderAnalise(div.id,gen.id,'sku',2)|| 0 | number:'1.0-0'}}
+                </td>
+                <td style="border-right: 1px solid #cccccc;">
+                  {{admingenderAnalise(div.id,gen.id,'sku',1)|| 0 | number:'1.0-0'}}
+                </td>
+              </div>
+              <td>
+                {{admingenderAnalise(div.id,0,'tot_sku',2)|| 0 | number:'1.0-0'}}
+              </td>
+              <td>
+                {{admingenderAnalise(div.id,0,'tot_sku',1)|| 0 | number:'1.0-0'}}
+              </td>
+            </tr>
+            <tr style="font-weight: bold;">
+              <td>Total</td>
+              <!-- <td *ngFor="let cnt of countries">
+                <b>{{adminCategoryAnalusis(0,'tot_qty2',1,cnt.id)|| 0 | number:'1.0-0'}}</b></td> -->
+              <div *ngFor="let gen of genderList" style="display: contents;">
+                <td>
+                  {{admingenderAnaliseTot(gen.id,'sku',2)||0| number:'1.0-0'}}
+                </td>
+                <td style="border-right: 1px solid #cccccc;">
+                  {{admingenderAnaliseTot(gen.id,'sku',1)||0| number:'1.0-0'}}
+                </td>
+              </div>
+              <td>
+                {{admingenderAnaliseTot(0,'tot_sku',2)||0| number:'1.0-0'}}
+              </td>
+              <td style="border-right: 1px solid #cccccc;">
+                {{admingenderAnaliseTot(0,'tot_sku',1)||0| number:'1.0-0'}}
+              </td>
+              <!-- <td><b>{{this.categoryOrdersBycountry.totalQty1||0| number:'1.0-0'}}</b></td>
+              <td><b>{{this.categoryOrdersBycountry.totalQty||0| number:'1.0-0'}}</b></td> -->
+            </tr>
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-md-6">
+      <mat-card>
+        <mat-card-content>
+          <mat-card-title class="ord_gen">Season Gender Split By
+            Qty<b>({{getSeasonName(curseasonNewId)}} &
+              {{getSeasonName(prevseasonNewId)}})</b> </mat-card-title>
+          <table class="heavyTable table1">
+            <tr>
+              <th>All Countries</th>
+              <th *ngFor="let gen of genderList" colspan="2">{{gen.name}}</th>
+              <th>Total</th>
+              <th>Total</th>
+            </tr>
+            <tr>
+              <th><b>Season</b></th>
+
+              <div *ngFor="let cnt of genderList" style="display: contents;">
+                <th style="padding-top: 16px;">{{getSeasonName(orderByCountryData.curyearPrevSeason)}}</th>
+                <th style="border-right: 1px solid #38678f;padding-top: 16px;">
+                  {{getSeasonName(orderByCountryData.activeSeason)}}
+                </th>
+              </div>
+
+
+              <th>{{getSeasonName(orderByCountryData.curyearPrevSeason)}}</th>
+              <th style="border-right: 1px solid #38678f;">
+                {{getSeasonName(orderByCountryData.activeSeason)}}
+              </th>
+            </tr>
+            <tr *ngFor="let div of divisionList">
+              <td><b>{{div.name}}</b></td>
+              <!-- <td *ngFor="let gen of genderList">
+                {{admingenderAnalise(div.id,gen.id,'qty',1)|| 0 | number:'1.0-0'}}
+              </td> -->
+
+              <div *ngFor="let gen of genderList" style="display: contents;">
+                <td>
+                  {{admingenderAnalise(div.id,gen.id,'qty',2)|| 0 | number:'1.0-0'}}
+                </td>
+                <td style="border-right: 1px solid #cccccc;">
+                  {{admingenderAnalise(div.id,gen.id,'qty',1)|| 0 | number:'1.0-0'}}
+                </td>
+              </div>
+              <td>
+                {{admingenderAnalise(div.id,0,'tot_qty',2)|| 0 | number:'1.0-0'}}
+              </td>
+              <td>
+                {{admingenderAnalise(div.id,0,'tot_qty',1)|| 0 | number:'1.0-0'}}
+              </td>
+            </tr>
+            <tr style="font-weight: bold;">
+              <td>Total</td>
+              <!-- <td *ngFor="let cnt of countries">
+                <b>{{adminCategoryAnalusis(0,'tot_qty2',1,cnt.id)|| 0 | number:'1.0-0'}}</b></td> -->
+              <div *ngFor="let gen of genderList" style="display: contents;">
+                <td>
+                  {{admingenderAnaliseTot(gen.id,'qty',2)||0| number:'1.0-0'}}
+                </td>
+                <td style="border-right: 1px solid #cccccc;">
+                  {{admingenderAnaliseTot(gen.id,'qty',1)||0| number:'1.0-0'}}
+                </td>
+              </div>
+              <td>
+                {{admingenderAnaliseTot(0,'tot_qty',2)||0| number:'1.0-0'}}
+              </td>
+              <td style="border-right: 1px solid #cccccc;">
+                {{admingenderAnaliseTot(0,'tot_qty',1)||0| number:'1.0-0'}}
+              </td>
+              <!-- <td><b>{{this.categoryOrdersBycountry.totalQty1||0| number:'1.0-0'}}</b></td>
+              <td><b>{{this.categoryOrdersBycountry.totalQty||0| number:'1.0-0'}}</b></td> -->
+            </tr>
+
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="logUser==1">
+    <div class="col-md-12">
+      <mat-card>
+        <mat-card-content>
+          <mat-card-title class="ord_gen">Season & Launch Month By Value
+            <b>({{getSeasonName(curseasonNewId)}})
+
+            </b> </mat-card-title>
+          <table class="heavyTable table1">
+            <tr>
+              <th>Countries</th>
+              <th *ngFor="let item of adminmonthlyReports.monthList">{{ item.month}}</th>
+              <th style="text-align: center;">Total (SGD)</th>
+            </tr>
+
+            <tr *ngFor="let item of adminmonthlyReports.countryList">
+              <td>{{item.country_name}}</td>
+              <td *ngFor="let countryMonth of adminmonthlyReports.monthList">
+                {{countryMonthWiseAnalise(item.country_id,countryMonth.month,'amt',1)|| 0 | number:'1.0-0'}}
+              </td>
+
+              <td style="text-align: center;">
+                {{countryMonthWiseAnalise(item.country_id,0,'tot_amt',1)|| 0 |currency: 'USD' : 'symbol' : '1.0-0'}}
+              </td>
+
+            </tr>
+            <tr style="font-weight: bold;">
+              <td>Total (SGD)</td>
+              <td *ngFor="let countryMonth of adminmonthlyReports.monthList">
+                {{countryMonthWiseAnalise(0,countryMonth.month,'tot_amt',1)|| 0 |currency: 'USD' : 'symbol' : '1.0-0'}}
+              </td>
+              <td style="text-align: center;">
+                {{countryMonthWiseAnalise(0,0,'total_amt',1)|| 0 |currency: 'USD' : 'symbol' : '1.0-0'}}
+              </td>
+            </tr>
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+
+
+  <div class="row" *ngIf="logUser==1">
+    <div class="col-md-12">
+      <mat-card>
+        <mat-card-content>
+          <!-- {{adminmonthlyReports.countyWiseData | json}} -->
+          <mat-card-title class="ord_gen">Season & Launch Month By Value
+            <b>({{getSeasonName(prevseasonNewId)}})
+
+            </b> </mat-card-title>
+          <table class="heavyTable table1">
+            <tr>
+              <th>Countries</th>
+              <th *ngFor="let item of adminmonthlyReports.prevmonthList">{{ item.month}}</th>
+              <th style="text-align: center;">Total (SGD)</th>
+            </tr>
+          
+            <tr *ngFor="let item of adminmonthlyReports.prevCountryList">
+              <td>{{item.country_name}}</td>
+              <td *ngFor="let countryMonth of adminmonthlyReports.prevmonthList">
+                {{countryMonthWiseAnalise(item.country_id,countryMonth.month,'amt',2)|| 0 | number:'1.0-0'}}
+              </td>
+
+              
+              <td style="text-align: center;">
+                {{countryMonthWiseAnalise(item.country_id,0,'tot_amt',2)|| 0 |currency: 'USD' : 'symbol' : '1.0-0'}}
+              </td>
+
+            </tr>
+            <tr style="font-weight: bold;">
+              <td>Total (SGD)</td>
+              <td *ngFor="let countryMonth of adminmonthlyReports.prevmonthList">
+                {{countryMonthWiseAnalise(0,countryMonth.month,'tot_amt',2)|| 0 |currency: 'USD' : 'symbol' : '1.0-0'}}
+              </td>
+              <td style="text-align: center;">
+                {{countryMonthWiseAnalise(0,0,'total_amt',2)|| 0 |currency: 'USD' : 'symbol' : '1.0-0'}}
+              </td>
+            </tr>
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="logUser==1">
+    <div class="col-md-12">
+      <mat-card>
+        <mat-card-content>
+          <mat-card-title class="ord_gen">Season & Launch Month By Qty
+            <b>({{getSeasonName(curseasonNewId)}})</b> </mat-card-title>
+          <table class="heavyTable table1">
+            <tr>
+              <th>Countries</th>
+              <th *ngFor="let item of adminmonthlyReports.monthList">{{ item.month}}</th>
+              <th>Total</th>
+            </tr>
+
+
+            <tr *ngFor="let item of adminmonthlyReports.countryList">
+              <td>{{item.country_name}}</td>
+              <td *ngFor="let countryMonth of adminmonthlyReports.monthList">
+                {{countryMonthWiseAnalise(item.country_id,countryMonth.month,'qty',1)|| 0 | number:'1.0-0'}}
+              </td>
+              <td>
+                {{countryMonthWiseAnalise(item.country_id,0,'tot_qty',1)|| 0 | number:'1.0-0'}}
+              </td>
+
+            </tr>
+
+            <tr style="font-weight: bold;">
+              <td>Total</td>
+              <td *ngFor="let countryMonth of adminmonthlyReports.monthList">
+                {{countryMonthWiseAnalise(0,countryMonth.month,'tot_qty',1)|| 0 | number:'1.0-0'}}
+              </td>
+              <td style="text-align: center;">
+                {{countryMonthWiseAnalise(0,0,'total_qty',1)|| 0 | number:'1.0-0'}}
+              </td>
+            </tr>
+            <!-- <tr>
+          <th *ngFor="let item of adminmonthlyReports" >{{item.ord_launch_mon}}</th>
+          <th>Total</th>
+        </tr>
+        <tr>
+          <td *ngFor="let item of adminmonthlyReports">{{item.qty}}</td>
+          <td><b>{{getSum(adminmonthlyReports,'qty')}}</b></td>
+        </tr>
+        <tr> -->
+            <!-- let item of divisionGenderData[div.id] -->
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="logUser==1">
+    <div class="col-md-12">
+      <mat-card>
+        <mat-card-content>
+          <mat-card-title class="ord_gen">Season & Launch Month By Qty
+            <b>(
+              {{getSeasonName(prevseasonNewId)}})</b> </mat-card-title>
+          <table class="heavyTable table1">
+            <tr>
+              <th>Countries</th>
+              <th *ngFor="let item of adminmonthlyReports.prevmonthList">{{ item.month}}</th>
+              <th>Total</th>
+            </tr>
+
+
+            <tr *ngFor="let item of adminmonthlyReports.countryList">
+              <td>{{item.country_name}}</td>
+              <td *ngFor="let countryMonth of adminmonthlyReports.prevmonthList">
+                {{countryMonthWiseAnalise(item.country_id,countryMonth.month,'qty',2)|| 0 | number:'1.0-0'}}
+              </td>
+
+              <td>
+                {{countryMonthWiseAnalise(item.country_id,0,'tot_qty',2)|| 0 | number:'1.0-0'}}
+              </td>
+
+            </tr>
+
+            <tr style="font-weight: bold;">
+              <td>Total</td>
+              <td *ngFor="let countryMonth of adminmonthlyReports.prevmonthList">
+                {{countryMonthWiseAnalise(0,countryMonth.month,'tot_qty',2)|| 0 | number:'1.0-0'}}
+              </td>
+              <td style="text-align: center;">
+                {{countryMonthWiseAnalise(0,0,'total_qty',2)|| 0 | number:'1.0-0'}}
+              </td>
+            </tr> 
+
+            <!-- <tr>
+          <th *ngFor="let item of adminmonthlyReports" >{{item.ord_launch_mon}}</th>
+          <th>Total</th>
+        </tr>
+        <tr>
+          <td *ngFor="let item of adminmonthlyReports">{{item.qty}}</td>
+          <td><b>{{getSum(adminmonthlyReports,'qty')}}</b></td>
+        </tr>
+        <tr> -->
+            <!-- let item of divisionGenderData[div.id] -->
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="logUser==1">
+    <div class="col-md-6">
+      <mat-card>
+        <mat-card-content>
+          <mat-card-title class="ord_gen">CHANNELS BY VALUE
+            <b>({{getSeasonName(curseasonNewId)}} &
+              {{getSeasonName(prevseasonNewId)}})</b></mat-card-title>
+          <table class="heavyTable table1">
+            <tr>
+              <th>Country</th>
+              <th colspan="2">Mono Store</th>
+              <th colspan="2">Multi Brand Store</th>
+              <!-- <th colspan="2">None</th> -->
+              <th>Total (SGD)</th>
+              <th>Total (SGD)</th>
+            </tr>
+            <tr>
+              <th>Season</th>
+              <th>{{getSeasonName(orderByCountryData.curyearPrevSeason)}}</th>
+              <th>{{getSeasonName(orderByCountryData.activeSeason)}}</th>
+              <th>{{getSeasonName(orderByCountryData.curyearPrevSeason)}}</th>
+              <th>{{getSeasonName(orderByCountryData.activeSeason)}}</th>
+              <!-- <th>{{getSeasonName(orderByCountryData.curyearPrevSeason)}}</th>
+              <th>{{getSeasonName(orderByCountryData.activeSeason)}}</th> -->
+              <th>{{getSeasonName(orderByCountryData.curyearPrevSeason)}}</th>
+              <th>{{getSeasonName(orderByCountryData.activeSeason)}}</th>
+            </tr>
+            <tr *ngFor="let cnt of countries">
+              <td>{{cnt.name}}</td>
+              <td>{{adminStoreAnalysisPrev(cnt.id,'amt',1)|| 0 | number:'1.0-0'}}</td>
+              <td>{{adminStoreAnalysis(cnt.id,'amt',1)|| 0 | number:'1.0-0'}}</td>
+              <td>{{adminStoreAnalysisPrev(cnt.id,'amt',2)|| 0 | number:'1.0-0'}}</td>
+              <td>{{adminStoreAnalysis(cnt.id,'amt',2)|| 0 | number:'1.0-0'}}</td>
+              <!-- <td>{{adminStoreAnalysisPrev(cnt.id,'amt',3)|| 0 | number:'1.0-0'}}</td>
+              <td>{{adminStoreAnalysis(cnt.id,'amt',3)|| 0 | number:'1.0-0'}}</td> -->
+
+              <td>
+                {{adminStoreAnalysisPrev(cnt.id,'amt','tot')|| 0 |currency: 'USD' : 'symbol' : '1.0-0'}}
+              </td>
+              <td>
+                {{adminStoreAnalysis(cnt.id,'amt','tot')|| 0 |currency: 'USD' : 'symbol' : '1.0-0'}}
+              </td>
+            </tr>
+
+            <tr style="font-weight: bold;">
+              <td>Total (SGD)</td>
+              <td>{{adminStoreAnalysisPrev(0,'tot_amt',1)|| 0 |currency: 'USD' : 'symbol' : '1.0-0'}}</td>
+              <td>{{adminStoreAnalysis(0,'tot_amt',1)|| 0 |currency: 'USD' : 'symbol' : '1.0-0'}}</td>
+              <td>{{adminStoreAnalysisPrev(0,'tot_amt',2)|| 0 |currency: 'USD' : 'symbol' : '1.0-0'}}</td>
+              <td>{{adminStoreAnalysis(0,'tot_amt',2)|| 0 |currency: 'USD' : 'symbol' : '1.0-0'}}</td>
+              <td>{{adminStoreAnalysisPrev(0,'tot_amt','tot')|| 0 |currency: 'USD' : 'symbol' : '1.0-0'}}</td>
+              <td>{{adminStoreAnalysis(0,'tot_amt','tot')|| 0 |currency: 'USD' : 'symbol' : '1.0-0'}}</td>
+            </tr>
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="col-md-6">
+      <mat-card>
+        <mat-card-content>
+          <mat-card-title class="ord_gen">CHANNELS BY QUANTITY
+            <b>({{getSeasonName(curseasonNewId)}} &
+              {{getSeasonName(prevseasonNewId)}})</b></mat-card-title>
+          <table class="heavyTable table1">
+            <tr>
+              <th>Country</th>
+              <th colspan="2">Mono Store</th>
+              <th colspan="2">Multi Brand Store</th>
+              <!-- <th colspan="2">None</th> -->
+              <th>Total</th>
+              <th>Total</th>
+            </tr>
+            <tr>
+              <th>Season</th>
+              <th>{{getSeasonName(orderByCountryData.curyearPrevSeason)}}</th>
+              <th>{{getSeasonName(orderByCountryData.activeSeason)}}</th>
+              <th>{{getSeasonName(orderByCountryData.curyearPrevSeason)}}</th>
+              <th>{{getSeasonName(orderByCountryData.activeSeason)}}</th>
+              <!-- <th>{{getSeasonName(orderByCountryData.curyearPrevSeason)}}</th>
+              <th>{{getSeasonName(orderByCountryData.activeSeason)}}</th> -->
+              <th>{{getSeasonName(orderByCountryData.curyearPrevSeason)}}</th>
+              <th>{{getSeasonName(orderByCountryData.activeSeason)}}</th>
+            </tr>
+            <tr *ngFor="let cnt of countries">
+              <td>{{cnt.name}}</td>
+              <td>{{adminStoreAnalysisPrev(cnt.id,'qty',1)|| 0 | number:'1.0-0'}}</td>
+              <td>{{adminStoreAnalysis(cnt.id,'qty',1)|| 0 | number:'1.0-0'}}</td>
+              <td>{{adminStoreAnalysisPrev(cnt.id,'qty',2)|| 0 | number:'1.0-0'}}</td>
+              <td>{{adminStoreAnalysis(cnt.id,'qty',2)|| 0 | number:'1.0-0'}}</td>
+              <!-- <td>{{adminStoreAnalysisPrev(cnt.id,'qty',3)|| 0 | number:'1.0-0'}}</td>
+              <td>{{adminStoreAnalysis(cnt.id,'qty',3)|| 0 | number:'1.0-0'}}</td> -->
+
+              <td>
+                {{adminStoreAnalysisPrev(cnt.id,'qty','tot')|| 0 | number:'1.0-0'}}
+              </td>
+              <td>
+                {{adminStoreAnalysis(cnt.id,'qty','tot')|| 0 | number:'1.0-0'}}
+              </td>
+            </tr>
+
+            <tr style="font-weight: bold;">
+              <td>Total</td>
+              <td>{{adminStoreAnalysisPrev(0,'tot_qty',1)|| 0 | number:'1.0-0'}}</td>
+              <td>{{adminStoreAnalysis(0,'tot_qty',1)|| 0 | number:'1.0-0'}}</td>
+              <td>{{adminStoreAnalysisPrev(0,'tot_qty',2)|| 0 | number:'1.0-0'}}</td>
+              <td>{{adminStoreAnalysis(0,'tot_qty',2)|| 0 | number:'1.0-0'}}</td>
+              <td>{{adminStoreAnalysisPrev(0,'tot_qty','tot')|| 0 | number:'1.0-0'}}</td>
+              <td>{{adminStoreAnalysis(0,'tot_qty','tot')|| 0 | number:'1.0-0'}}</td>
+            </tr>
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+</div>
+
+<!-- ====================================================admin graph ============================================ -->
+<div class="row" *ngIf="logUser==1">
+  <div class="col-md-6">
+    <mat-card class="order_section chart-hover hover-effect sub-card">
+      <mat-card-content class="performance_chart">
+        <mat-card-title class="ord_gen">Top 10 FW Item Ordered - Men ({{getSeasonName(curseasonNewId)}})<br /><small>Click color icons for
+            more info</small></mat-card-title>
+        <div *ngIf="hBarboolTop5MenChartData">
+          <canvas baseChart [datasets]="hBarTop5MenChartData" [labels]="hBarTop5MenChartLabels"
+            [options]="horizontalBarChartOptions" [legend]="horizontalBarChartLegend"
+            [chartType]="horizontalBarChartType" (chartHover)="chartHovered($event)" [colors]="horizontalBarChartColors"
+            (chartClick)="chartClicked($event)">
+          </canvas>
+        </div>
+        <div *ngIf="!hBarboolTop5MenChartData" class="text-center">No data to display</div>
+      </mat-card-content>
+
+
+    </mat-card>
+  </div>
+
+  <div class="col-md-6">
+    <mat-card class="order_section chart-hover hover-effect sub-card">
+      <mat-card-content class="performance_chart">
+        <mat-card-title class="ord_gen">Top 10 Apparel Item Ordered - Men ({{getSeasonName(curseasonNewId)}})<br /><small>Click color icons
+            for more info</small></mat-card-title>
+        <div *ngIf="hBarboolTop5MenChartDataApeq">
+          <canvas baseChart [datasets]="hBarTop5MenChartDataApeq" [labels]="hBarTop5MenChartLabelsApeq"
+            [options]="horizontalBarChartOptions" [legend]="horizontalBarChartLegend"
+            [chartType]="horizontalBarChartType" (chartHover)="chartHovered($event)" [colors]="horizontalBarChartColors"
+            (chartClick)="chartClicked($event)">
+          </canvas>
+        </div>
+        <div *ngIf="!hBarboolTop5MenChartDataApeq" class="text-center">No data to display</div>
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+</div>
+<div class="row" *ngIf="logUser==1">
+  <div class="col-md-6">
+    <mat-card class="order_section chart-hover hover-effect sub-card">
+      <mat-card-content class="performance_chart">
+        <mat-card-title class="ord_gen">Top 10 FW Item Ordered - Women ({{getSeasonName(curseasonNewId)}})<br /><small>Click color icons
+            for more info</small></mat-card-title>
+        <div *ngIf="hBarboolTop5WomenChartData">
+          <canvas baseChart [datasets]="hBarTop5WomenChartData" [labels]="hBarTop5WomenChartLabels"
+            [options]="horizontalBarChartOptions" [legend]="horizontalBarChartLegend"
+            [chartType]="horizontalBarChartType" (chartHover)="chartHovered($event)" [colors]="horizontalBarChartColors"
+            (chartClick)="chartClicked($event)">
+          </canvas>
+        </div>
+        <div *ngIf="!hBarboolTop5WomenChartData" class="text-center">No data to display</div>
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+  <div class="col-md-6">
+    <mat-card class="order_section chart-hover hover-effect sub-card">
+      <mat-card-content class="performance_chart">
+        <mat-card-title class="ord_gen">Top 10 Apparel Item Ordered - Women ({{getSeasonName(curseasonNewId)}})<br /><small>Click color
+            icons for more info</small></mat-card-title>
+        <div *ngIf="hBarboolTop5WomenChartDataApeq">
+          <canvas baseChart [datasets]="hBarTop5WomenChartDataApeq" [labels]="hBarTop5WomenChartLabelsApeq"
+            [options]="horizontalBarChartOptions" [legend]="horizontalBarChartLegend"
+            [chartType]="horizontalBarChartType" (chartHover)="chartHovered($event)" [colors]="horizontalBarChartColors"
+            (chartClick)="chartClicked($event)">
+          </canvas>
+        </div>
+        <div *ngIf="!hBarboolTop5WomenChartDataApeq" class="text-center">No data to display</div>
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+</div>
+
+<div class="row" *ngIf="logUser==1">
+  <div class="col-md-6">
+    <mat-card class="order_section chart-hover hover-effect sub-card">
+      <mat-card-content class="performance_chart">
+        <mat-card-title class="ord_gen">Top 10 FW Item Ordered - Kids ({{getSeasonName(curseasonNewId)}})<br /><small>Click color icons for more
+            info</small></mat-card-title>
+        <div *ngIf="hBarboolTop5KidsChartData">
+          <canvas baseChart [datasets]="hBarTop5KidsChartData" [labels]="hBarTop5KidsChartLabels"
+            [options]="horizontalBarChartOptions" [legend]="horizontalBarChartLegend"
+            [chartType]="horizontalBarChartType" (chartHover)="chartHovered($event)" [colors]="horizontalBarChartColors"
+            (chartClick)="chartClicked($event)">
+          </canvas>
+        </div>
+        <div *ngIf="!hBarboolTop5KidsChartData" class="text-center">No data to display</div>
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+</div>
+
+
+<!-- ========================================================================================================================== -->
+<!--Report section-->
+
+<!-- ****************************Seasonal comparisions for user **************************************************** -->
+<div>
+  <div class="page-header" *ngIf="logUser==2">
+    <h4 style="margin-left: 16px;">
+      Seasonal Comparisons
+    </h4>
+
+  </div>
+
+  <mat-card *ngIf="logUser==2">
+    <mat-card-content>
+      <form [formGroup]="seasonCustomerForm">
+        <div class="row">
+          <div class="col-md-3">
+            <mat-form-field appearance="">
+              <mat-select placeholder="Current " [(ngModel)]="curseasonNewId" formControlName="curseasonNewId">
+                <mat-option *ngFor="let option of seasonList" [value]="option.id"
+                  (click)="getCustomerSeasonComparision($event.value)">{{ option.name }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-3">
+            <mat-form-field appearance="">
+              <mat-select placeholder="Previous Season" [(ngModel)]="prevseasonNewId" formControlName="prevseasonNewId">
+                <mat-option *ngFor="let option of seasonList" [value]="option.id"
+                  (click)="getCustomerSeasonComparision($event.value)">{{ option.name }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  <div class="row" *ngIf="logUser==2">
+    <div class="col-md-6">
+      <mat-card>
+        <mat-card-content>
+          <mat-card-title class="ord_gen">SEASONAL ORDERS BY LOCAL CURRENCY EXCLUDE VAT</mat-card-title>
+          <table class="heavyTable table1">
+
+            <tr>
+              <!-- <th *ngFor="let item of seasonalOrderComparision.item">{{item.season_name}}</th> -->
+              <th>{{getSeasonName(curseasonNewId)}}</th>
+              <th>{{getSeasonName(prevseasonNewId)}}</th>
+              <th>Variance</th>
+            </tr>
+            <tr>
+              <!-- <td *ngFor="let item of seasonalOrderComparision.item">{{item.totalorderamount|| 0 | number:'1.0-0'}}</td> -->
+              <td>{{customerSeasonComparisionData(curseasonNewId,'amt')| number:'1.0-0'}} </td>
+              <td>{{customerSeasonComparisionData(prevseasonNewId,'amt')| number:'1.0-0'}}</td>
+              <td>{{seasonalOrderComparision.amountvarince || 0}} %</td>
+            </tr>
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="col-md-6">
+      <mat-card>
+        <mat-card-content>
+          <mat-card-title class="ord_gen">SEASONAL ORDERS BY QUANTITY</mat-card-title>
+          <table class="heavyTable table1">
+            <tr>
+              <!-- <th *ngFor="let item of seasonalOrderComparision.item">{{item.season_name}}</th> -->
+              <th>{{getSeasonName(curseasonNewId)}}</th>
+              <th>{{getSeasonName(prevseasonNewId)}}</th>
+              <th>Variance</th>
+            </tr>
+            <tr>
+              <!-- <td *ngFor="let item of seasonalOrderComparision.item">{{item.totalquantity}}</td> -->
+              <td>{{customerSeasonComparisionData(curseasonNewId,'qty')}} </td>
+              <td>{{customerSeasonComparisionData(prevseasonNewId,'qty')}}</td>
+              <td>{{seasonalOrderComparision.quantityvarince|| 0}} %</td>
+            </tr>
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="logUser==2">
+    <div class="col-md-6">
+      <mat-card>
+        <mat-card-content>
+          <mat-card-title class="ord_gen">CATEGORY ORDERS BY LOCAL CURRENCY EXCLUDE VAT </mat-card-title>
+          <table class="heavyTable table1">
+            <tr>
+              <th>Seasons</th>
+              <th>{{getSeasonName(curseasonNewId)}}</th>
+              <th>{{getSeasonName(prevseasonNewId)}}</th>
+              <th>{{getSeasonName(curseasonNewId)}} VS {{getSeasonName(prevseasonNewId)}}</th>
+            </tr>
+            <tr>
+              <th>Category</th>
+              <th>Amount</th>
+              <th>Amount</th>
+              <th>Percentage</th>
+            </tr>
+            <tr *ngFor="let item of cateogoryList">
+              <td><b>{{item.name}}</b></td>
+              <td>{{categoryAnalise(item.id,'amt',1)|| 0 | number:'1.0-0'}}</td>
+              <td>{{categoryAnalise(item.id,'amt',2)|| 0 | number:'1.0-0'}}</td>
+              <td>{{categoryAnalise(item.id,'amt',3)}} %</td>
+            </tr>
+            <!-- <tr>
+              <td><b>Total</b></td>
+              <td><b>{{getSum(item.value,'totalorderamount')|| 0 | number:'1.0-0'}}</b></td>
+            </tr> -->
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-md-6">
+      <mat-card>
+        <mat-card-content>
+          <mat-card-title class="ord_gen">CATEGORY ORDERS BY QUANTITY </mat-card-title>
+          <table class="heavyTable table1">
+            <tr>
+              <th>Seasons</th>
+              <th>{{getSeasonName(curseasonNewId)}}</th>
+              <th>{{getSeasonName(prevseasonNewId)}}</th>
+              <th>{{getSeasonName(curseasonNewId)}} VS {{getSeasonName(prevseasonNewId)}}</th>
+            </tr>
+            <tr>
+              <th>Category</th>
+              <th>QTY</th>
+              <th>QTY</th>
+              <th>Percentage</th>
+            </tr>
+            <tr *ngFor="let item of cateogoryList">
+              <td><b>{{item.name}}</b></td>
+              <td>{{categoryAnalise(item.id,'qty',1)|| 0 | number:'1.0-0'}}</td>
+              <td>{{categoryAnalise(item.id,'qty',2)|| 0 | number:'1.0-0'}}</td>
+              <td>{{categoryAnalise(item.id,'qty',3)}} %</td>
+            </tr>
+            <!-- <tr>
+                <td><b>Total</b></td>
+                <td><b>{{getSum(item.value,'totalorderamount')|| 0 | number:'1.0-0'}}</b></td>
+              </tr> -->
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="logUser==2">
+    <div class="col-md-12">
+      <mat-card>
+        <mat-card-content>
+          <mat-card-title class="ord_gen">GENDER SPLIT BY LOCAL CURRENCY EXCLUDE VAT </mat-card-title>
+          <table class="heavyTable table1">
+            <tr>
+              <th *ngIf="curseasonNewId">
+                <h1>{{getSeasonName(curseasonNewId)}}</h1>
+              </th>
+              <th *ngIf="prevseasonNewId">
+                <h1>{{getSeasonName(prevseasonNewId)}}</h1>
+              </th>
+            </tr>
+            <tr>
+              <td>
+                <table class="heavyTable table1">
+                  <tr>
+                    <th></th>
+                    <th *ngFor="let gen of genderList">{{gen.name}}</th>
+                    <th>Total</th>
+                  </tr>
+                  <tr *ngFor="let div of divisionList">
+                    <td><b>{{div.name}}</b></td>
+                    <td *ngFor="let gen of genderList">
+                      {{genderAnalise(div.id,gen.id,'amt',1)|| 0 | number:'1.0-0'}}
+                    </td>
+                    <td>{{getSum(gropupBYgenderCur[div.id],'total_amount')|| 0 | number:'1.0-0'}}</td>
+                  </tr>
+                  <tr>
+
+                </table>
+              </td>
+              <td>
+                <table class="heavyTable table1">
+                  <tr>
+                    <th></th>
+                    <th *ngFor="let gen of genderList">{{gen.name}}</th>
+                    <th>Total</th>
+                  </tr>
+                  <tr *ngFor="let div of divisionList">
+                    <td><b>{{div.name}}</b></td>
+                    <td *ngFor="let gen of genderList">
+                      {{genderAnalise(div.id,gen.id,'amt',2)|| 0 | number:'1.0-0'}}
+                    </td>
+                    <td>{{getSum(gropupBYgenderPrev[div.id],'total_amount')|| 0 | number:'1.0-0'}}</td>
+                  </tr>
+                  <tr>
+
+                </table>
+              </td>
+            </tr>
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="logUser==2">
+    <div class="col-md-12">
+      <mat-card>
+        <mat-card-content>
+          <mat-card-title class="ord_gen">GENDER SPLIT BY QUANTITY </mat-card-title>
+          <table class="heavyTable table1">
+            <tr>
+              <th *ngIf="curseasonNewId">
+                <h1>{{getSeasonName(curseasonNewId)}}</h1>
+              </th>
+              <th *ngIf="prevseasonNewId">
+                <h1>{{getSeasonName(prevseasonNewId)}}</h1>
+              </th>
+            </tr>
+            <tr>
+              <td>
+                <table class="heavyTable table1">
+                  <tr>
+                    <th></th>
+                    <th *ngFor="let gen of genderList">{{gen.name}}</th>
+                    <th>Total</th>
+                  </tr>
+                  <tr *ngFor="let div of divisionList">
+                    <td><b>{{div.name}}</b></td>
+                    <td *ngFor="let gen of genderList">
+                      {{genderAnalise(div.id,gen.id,'qty',1)|| 0 | number:'1.0-0'}}
+                    </td>
+                    <td>{{getSum(gropupBYgenderCur[div.id],'total_qty')|| 0 | number:'1.0-0'}}</td>
+                  </tr>
+                  <tr>
+
+                </table>
+              </td>
+              <td>
+                <table class="heavyTable table1">
+                  <tr>
+                    <th></th>
+                    <th *ngFor="let gen of genderList">{{gen.name}}</th>
+                    <th>Total</th>
+                  </tr>
+                  <tr *ngFor="let div of divisionList">
+                    <td><b>{{div.name}}</b></td>
+                    <td *ngFor="let gen of genderList">
+                      {{genderAnalise(div.id,gen.id,'qty',2)|| 0 | number:'1.0-0'}}
+                    </td>
+                    <td>{{getSum(gropupBYgenderPrev[div.id],'total_qty')|| 0 | number:'1.0-0'}}</td>
+                  </tr>
+                  <tr>
+
+                </table>
+              </td>
+            </tr>
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+
+  <!-- <div class="row" *ngIf="logUser==2">
+    <div class="col-md-6">
+      <mat-card>
+        <mat-card-content>
+          <mat-card-title class="ord_gen">GENDER SPLIT COMPARISON BY LOCAL CURRENCY EXCLUDE VAT
+            <b>{{getSeasonName(curseasonNewId)}}</b> VS <b>{{getSeasonName(prevseasonNewId)}}</b></mat-card-title>
+          <table class="heavyTable table1">
+            <tr>
+              <th></th>
+              <th *ngFor="let gen of genderList">{{gen.name}}</th>
+            </tr>
+            <tr *ngFor="let div of divisionList">
+              <td><b>{{div.name}}</b></td>
+              <td *ngFor="let gen of genderList">
+                {{genderAnalise(div.id,gen.id,'amt')}}
+              </td>
+            </tr>
+            <tr>
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-md-6">
+      <mat-card>
+        <mat-card-content>
+          <mat-card-title class="ord_gen">GENDER SPLIT COMPARISON BY QUANTITY <b>{{getSeasonName(curseasonNewId)}}</b>
+            VS
+            <b>{{getSeasonName(prevseasonNewId)}}</b> </mat-card-title>
+          <table class="heavyTable table1">
+            <tr>
+              <th></th>
+              <th *ngFor="let gen of genderList">{{gen.name}}</th>
+            </tr>
+            <tr *ngFor="let div of divisionList">
+              <td><b>{{div.name}}</b></td>
+              <td *ngFor="let gen of genderList">
+                {{genderAnalise(div.id,gen.id,'qty')}}
+              </td>
+            </tr>
+            <tr>
+
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div> -->
+</div>

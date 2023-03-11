@@ -1,0 +1,761 @@
+.order_gen_right{
+    margin-right: 20px;
+  }
+  .ord_gen{
+    line-height: 2;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: capitalize;
+    margin-top: -15px !important;
+    text-align: center;
+  }
+  .ord_gen_data{
+    text-align: center;
+  }
+  .btn_bottom{
+    margin-bottom: 5px;
+  }
+  .order_gen_img{
+    margin-top: -15px;
+  }
+  h3.ord_gen_txt{
+    line-height: 30px;
+    font-size: 13px;
+    font-weight: 400;
+    text-transform: capitalize;
+  }
+  
+  h3.ord_txt.m-0 {
+      line-height: 30px;
+      font-size: 20px;
+      font-weight: 400;
+      text-transform: capitalize;
+      color: #ffffff!important;
+  }
+  
+  h6.ord_txt_amt.text-muted.m-0 {
+      line-height: 16px;
+      font-size: 14px;
+      font-weight: 400;
+      text-transform: capitalize;
+      color: #ffffff!important;
+  }
+  
+  h6.Avg_Order_txt.text-muted.m-0 {
+      font-size: 13px;
+      line-height: 13px;
+      font-weight: 400;
+      text-transform: capitalize;
+  }
+  
+  .order_section {
+      border: 1px solid #ddd !important;
+      box-shadow: 0 10px 6px -7px #777 !important;
+  }
+  
+  .order_section_icons {
+      font-size: 20px !important;
+      color: #fff !important;
+  }
+  
+  /* Pop up window dashboard*/
+  :host ::ng-deep .mat-radio-container{
+      height: 15px;
+      width: 15px;
+    }
+    :host ::ng-deep .mat-radio-outer-circle{
+      height: 15px;
+      width: 15px;
+      margin-top: 3px;
+    }
+    :host ::ng-deep .mat-radio-inner-circle{
+      height: 15px;
+      width: 15px;
+      margin-top: 3px;
+    }
+    :host ::ng-deep .mat-radio-button .mat-radio-ripple{
+      height: 15px; /*double of your required circle radius*/
+      width: 15px;  /*double of your required circle radius*/
+      left: calc(50% - 10px); /*'10px'-same as your required circle radius*/
+      top: calc(50% - 10px); /*'10px'-same as your required circle radius*/
+    }
+    :host ::ng-deep .mat-radio-label-content {
+      -webkit-user-select: auto;
+      -moz-user-select: auto;
+      -ms-user-select: auto;
+      user-select: auto;
+      display: inline-block;
+      order: 0;
+      line-height: inherit;
+      padding-left: 8px;
+      padding-right: 8px;
+      margin-top: 5px;
+    }
+    
+    
+    .tr_back{
+      background: #cad7f5 !important;
+      font-size: 11px !important;
+      font-weight: 400 !important;
+    }
+    .table-hover tbody tr:hover {
+      color: #212529;
+      background-color: #CCFFFF;
+      cursor: pointer;
+    }
+    .table-bordered>thead>tr>th {
+      border-bottom-width: 2px;
+    }
+    .mat-card-1 {
+       margin: 0px !important;
+   height: 185px;
+       box-shadow: 0px 3px 3px -3px rgba(0, 0, 0, 0.2), 0px 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 3px 6px 2px rgba(0, 0, 0, 0.12) !important;
+    }
+    .mat-card-2 {
+  
+      box-shadow: 0px 3px 3px -3px rgba(0, 0, 0, 0.2), 0px 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 3px 6px 2px rgba(0, 0, 0, 0.12) !important;
+    }
+  
+    
+    .mat-form-field {
+      font-size: 14px;
+      width: 100%;
+    }
+    
+  
+    .mat-head {
+      font-size: 13px;
+      font-weight: 500;
+      color: #000;
+      min-height: 20px;
+      padding-left: 5px !important;
+        background: #ff9800;
+    }
+    .normalize{
+      padding: 2px;
+      color: #fff;
+      background: #001e63;
+    }
+    .btn_normalize{
+      float: right;
+      margin-top: 2px;
+      font-size: 12px;
+      line-height: 1;
+      border-radius: .2rem;
+      margin-right: 2%;
+    }
+    .btn_copy{
+      float: right;
+      font-size: 12px;
+      line-height: 1;
+      border-radius: .2rem;
+      margin-right: 20px;
+    }
+    .copy_txt{
+      margin: 0 auto;
+    }
+  
+    
+    .table-bordered td, .table-bordered th {
+      border: 1px solid #808080  !important;
+    }
+    .mat-card .mat-card-content {
+       font-size: 12px;
+      line-height: 15px;
+      padding: 24px;
+    }
+    .tab_pad{
+      padding: 2px;
+    }
+  
+    
+    .table-hover tbody tr:hover {
+      color: #212529;
+      background-color: #CCFFFF;
+      cursor: pointer;
+    }
+    .table-bordered>thead>tr>th {
+      border-bottom-width: 2px;
+    }
+    
+    table {
+      table-layout: fixed;
+      width:100%;
+    }
+    td:first-child, th:first-child {
+      //position:sticky;
+      left:0;
+      z-index:1;
+    
+    }
+    td:nth-child(2),th:nth-child(2)  {
+      //position:sticky;
+        //left:40px;
+        z-index:1;
+        //background-color:white;
+        }
+        th:first-child , th:nth-child(2) {
+          z-index:3
+          }
+    td:last-child, th:last-child {
+      //position:sticky;
+      right:0;
+      z-index:1;
+    
+    }
+    thead tr th {
+      //position:sticky;
+      top:0;
+    }
+    th:first-child, th:last-child {z-index:2;}
+    
+    
+  .pad_radio{
+      padding: 5px;
+  }
+  .select_radio{
+      width: 8%;
+  }
+  .popup_data{
+      font-size: 12px;
+      font-family: "Roboto",Helvetica,Arial,Lucida,sans-serif !important;
+      color: #000 !important;
+      font-weight: 400;
+  }
+  .Order_tbl_col{
+      font-size: 13px;
+      font-family: "Roboto",Helvetica,Arial,Lucida,sans-serif !important;
+      color: #000 !important;
+      font-weight: 400;  
+  }
+  .divison_left{
+      font-size: 13px;
+      color: #fff;
+      font-weight: 300;
+      padding-left: 3px;
+    }
+    .ord_table{
+      text-align: left;
+      padding: 2px;
+      color: #fff;
+      background: #001e63;
+    }
+  .order_window{
+    border-radius: 5px;
+  
+  }
+    /* Pop up window dashboard ends*/
+  
+    
+  .example-header {
+    min-height: 64px;
+    padding: 8px 24px 0;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  // .mat-card .mat-card-content{
+  // padding: 0px !important;
+  // }
+  .mat-head {
+    font-size: 13px;
+    font-weight: 500;
+    color: #000;
+    min-height: 20px;
+    padding-left: 5px !important;
+      background: #ff9800;
+  }
+  
+  
+  
+  
+  
+  .example-container {
+    height: 270px;
+    overflow: auto;
+  }
+  
+  
+  .mar_btm{
+    margin-bottom: 1%;
+  }
+  .tab_txt{
+    padding-left: 10px !important;
+    color: #000;
+  }
+  .mat-cell, .mat-footer-cell {
+    font-size: 13px;
+    border: 1px solid #000 !important;
+  }
+  mat-footer-row, mat-header-row, mat-row {
+    display: flex;
+    border-width: 0;
+    border-bottom-width: 1px !important;
+    border-style: solid !important;
+    align-items: normal !important;
+    box-sizing: border-box;
+    border: 0px solid #000 !important;
+  }
+  
+  
+  .form-control {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + -0.25rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 12px;
+    text-align: right;
+    font-weight: 400;
+    line-height: 1.5;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 0px solid #ced4da;
+    border-radius: 0;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
+  .table-bordered td, .table-bordered th {
+    border: 1px solid #808080  !important;
+  }
+  .mat-card .mat-card-content {
+     font-size: 12px;
+    line-height: 15px;
+    padding: 24px;
+  }
+  .divisin_col{
+    width: 40%;
+    padding-left: 3px;
+  }
+  .txt_col{
+    width: 25%;
+    padding-left: 3px;
+  }
+  .tab_pad{
+    padding: 2px;
+  }
+  
+  
+  .table-hover tbody tr:hover {
+    color: #212529;
+    background-color: #CCFFFF;
+    cursor: pointer;
+  }
+  .table-bordered>thead>tr>th {
+    border-bottom-width: 2px;
+  }
+  .percent_cell{
+    padding-left: 3px;
+  }
+  
+  div.inner{
+    overflow:auto;
+    width:100%;
+  }
+  
+  .Foot_tbl{
+    width: 100px !important;
+    font-size: 10px !important;
+      font-weight: 500 !important;
+      background: #cad7f5 !important;
+      padding-left: 3px;
+  }
+  
+  table {
+    table-layout: fixed;
+    width:100%;
+  }
+  td:first-child, th:first-child {
+    //position:sticky;
+    left:0;
+    z-index:1;
+  
+  }
+  td:last-child, th:last-child {
+    //position:sticky;
+    right:0;
+    z-index:1;
+  
+  }
+  thead tr th {
+    //position:sticky;
+    top:0;
+  }
+  th:first-child, th:last-child {z-index:2;}
+  
+  .zui-table {
+      border: none;
+      border-right: solid 1px #DDEFEF;
+      border-collapse: separate;
+      border-spacing: 0;
+  }
+  
+  .zui-wrapper {
+      position: relative;
+  }
+  
+  .zui-table .zui-sticky-col {
+      border-left: solid 1px #DDEFEF;
+      border-right: solid 1px #DDEFEF;
+      left: 0;
+      position: sticky;
+      top: auto;
+      width: 100px;
+      background: #fff;
+  }
+  
+  .card_pad {
+    padding-bottom: 0px;
+  }
+  
+  :host ::ng-deep .mat-radio-container{
+    height: 15px;
+    width: 15px;
+  }
+  :host ::ng-deep .mat-radio-outer-circle{
+    height: 15px;
+    width: 15px;
+    margin-top: 3px;
+  }
+  :host ::ng-deep .mat-radio-inner-circle{
+    height: 15px;
+    width: 15px;
+    margin-top: 3px;
+  }
+  :host ::ng-deep .mat-radio-button .mat-radio-ripple{
+    height: 15px; /*double of your required circle radius*/
+    width: 15px;  /*double of your required circle radius*/
+    left: calc(50% - 10px); /*'10px'-same as your required circle radius*/
+    top: calc(50% - 10px); /*'10px'-same as your required circle radius*/
+  }
+  :host ::ng-deep .mat-radio-label-content {
+    -webkit-user-select: auto;
+    -moz-user-select: auto;
+    -ms-user-select: auto;
+    user-select: auto;
+    display: inline-block;
+    order: 0;
+    line-height: inherit;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-top: 5px;
+  }
+  
+  
+  .tr_back{
+    background: #cad7f5 !important;
+    font-size: 11px !important;
+    font-weight: 400 !important;
+  }
+  .table-hover tbody tr:hover {
+    color: #212529;
+    background-color: #CCFFFF;
+    cursor: pointer;
+  }
+  .table-bordered>thead>tr>th {
+    border-bottom-width: 2px;
+  }
+  .mat-card-1 {
+     margin: 0px !important;
+  height: 185px;
+     box-shadow: 0px 3px 3px -3px rgba(0, 0, 0, 0.2), 0px 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 3px 6px 2px rgba(0, 0, 0, 0.12) !important;
+  }
+  .mat-card-2 {
+  
+    box-shadow: 0px 3px 3px -3px rgba(0, 0, 0, 0.2), 0px 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 3px 6px 2px rgba(0, 0, 0, 0.12) !important;
+  }
+  
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  
+  .mat-head {
+    font-size: 13px;
+    font-weight: 500;
+    color: #000;
+    min-height: 20px;
+    padding-left: 5px !important;
+      background: #ff9800;
+  }
+  .normalize{
+    padding: 2px;
+    color: #fff;
+    background: #001e63;
+  }
+  .btn_normalize{
+    float: right;
+    margin-top: 2px;
+    font-size: 12px;
+    line-height: 1;
+    border-radius: .2rem;
+    margin-right: 2%;
+  }
+  .btn_copy{
+    float: right;
+    font-size: 12px;
+    line-height: 1;
+    border-radius: .2rem;
+    margin-right: 20px;
+  }
+  .copy_txt{
+    margin: 0 auto;
+  }
+  
+  
+  .table-bordered td, .table-bordered th {
+    border: 1px solid #808080  !important;
+  }
+  .mat-card .mat-card-content {
+     font-size: 12px;
+    line-height: 15px;
+    padding: 24px;
+  }
+  .tab_pad{
+    padding: 2px;
+  }
+  
+  
+  .table-hover tbody tr:hover {
+    color: #212529;
+    background-color: #CCFFFF;
+    cursor: pointer;
+  }
+  .table-bordered>thead>tr>th {
+    border-bottom-width: 2px;
+  }
+  
+  table {
+    table-layout: fixed;
+    width:100%;
+  }
+  td:first-child, th:first-child {
+    //position:sticky;
+    left:0;
+    z-index:1;
+  
+  }
+  td:nth-child(2),th:nth-child(2)  {
+    //position:sticky;
+      //left:40px;
+      z-index:1;
+      //background-color:white;
+      }
+      th:first-child , th:nth-child(2) {
+        z-index:3
+        }
+  td:last-child, th:last-child {
+    //position:sticky;
+    right:0;
+    z-index:1;
+  
+  }
+  thead tr th {
+    //position:sticky;
+    top:0;
+  }
+  th:first-child, th:last-child {z-index:2;}
+  
+  
+  .pad_radio{
+    padding: 5px;
+  }
+  .select_radio{
+    width: 8%;
+  }
+  .popup_data{
+    font-size: 12px;
+    font-family: "Roboto",Helvetica,Arial,Lucida,sans-serif !important;
+    color: #000 !important;
+    font-weight: 400;
+  }
+  .Order_tbl_col{
+    font-size: 13px;
+    font-family: "Roboto",Helvetica,Arial,Lucida,sans-serif !important;
+    color: #000 !important;
+    font-weight: 400;  
+  }
+  .divison_left{
+    font-size: 13px;
+    color: #fff;
+    font-weight: 300;
+    padding-left: 3px;
+  }
+  .ord_table{
+    text-align: left;
+    padding: 2px;
+    color: #fff;
+    background: #001e63;
+  }
+  .order_window{
+  border-radius: 5px;
+  
+  }
+  /* Pop up window dashboard ends*/
+  
+  
+  .example-header {
+  min-height: 64px;
+  padding: 8px 24px 0;
+  }
+  
+  .mat-form-field {
+  font-size: 14px;
+  width: 100%;
+  }
+  
+  // .mat-card .mat-card-content{
+  // padding: 0px !important;
+  // }
+  .mat-head {
+  font-size: 13px;
+  font-weight: 500;
+  color: #000;
+  min-height: 20px;
+  padding-left: 5px !important;
+    background: #ff9800;
+  }
+  
+  
+  
+  
+  
+  .example-container {
+  height: 270px;
+  overflow: auto;
+  }
+  
+  
+  .mar_btm{
+  margin-bottom: 1%;
+  }
+  .tab_txt{
+  padding-left: 10px !important;
+  color: #000;
+  }
+  .mat-cell, .mat-footer-cell {
+  font-size: 13px;
+  border: 1px solid #000 !important;
+  }
+  mat-footer-row, mat-header-row, mat-row {
+  display: flex;
+  border-width: 0;
+  border-bottom-width: 1px !important;
+  border-style: solid !important;
+  align-items: normal !important;
+  box-sizing: border-box;
+  border: 0px solid #000 !important;
+  }
+  
+  
+  .form-control {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + -0.25rem + 2px);
+  padding: .375rem .75rem;
+  font-size: 12px;
+  text-align: right;
+  font-weight: 400;
+  line-height: 1.5;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 0px solid #ced4da;
+  border-radius: 0;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
+  .table-bordered td, .table-bordered th {
+  border: 1px solid #808080  !important;
+  }
+  .mat-card .mat-card-content {
+   font-size: 12px;
+  line-height: 15px;
+  padding: 24px;
+  }
+  .divisin_col{
+  width: 40%;
+  padding-left: 3px;
+  }
+  .txt_col{
+  width: 25%;
+  padding-left: 3px;
+  }
+  .tab_pad{
+  padding: 2px;
+  }
+  
+  
+  .table-hover tbody tr:hover {
+  color: #212529;
+  background-color: #CCFFFF;
+  cursor: pointer;
+  }
+  .table-bordered>thead>tr>th {
+  border-bottom-width: 2px;
+  }
+  .percent_cell{
+  padding-left: 3px;
+  }
+  
+  div.inner{
+  overflow:auto;
+  width:100%;
+  }
+  
+  .Foot_tbl{
+  width: 100px !important;
+  font-size: 10px !important;
+    font-weight: 500 !important;
+    background: #cad7f5 !important;
+    padding-left: 3px;
+  }
+  
+  table {
+  table-layout: fixed;
+  width:100%;
+  }
+  td:first-child, th:first-child {
+  //position:sticky;
+  left:0;
+  z-index:1;
+  
+  }
+  td:last-child, th:last-child {
+  //position:sticky;
+  right:0;
+  z-index:1;
+  
+  }
+  thead tr th {
+  //position:sticky;
+  top:0;
+  }
+  th:first-child, th:last-child {z-index:2;}
+  
+  .zui-table {
+    border: none;
+    border-right: solid 1px #DDEFEF;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  
+  .zui-wrapper {
+    position: relative;
+  }
+  
+  .zui-table .zui-sticky-col {
+    border-left: solid 1px #DDEFEF;
+    border-right: solid 1px #DDEFEF;
+    left: 0;
+    position: sticky;
+    top: auto;
+    width: 100px;
+    background: #fff;
+  }
+  
+  .card_pad {
+  padding-bottom: 0px;
+  }
+  

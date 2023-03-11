@@ -1,0 +1,98 @@
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="card">
+      <div class="card-header card-header-info">
+        <div class="row">
+          <div class="col-sm-6">
+            <h4 class="card-title">User List</h4>
+          </div>
+          <div class="col-sm-6">
+
+            <!-- <button class="btn btn-info react-bs-table-add-btn "  [routerLink]="['/masters/add-season']">
+              <i class="fa glyphicon glyphicon-plus fa-plus"></i> New
+          </button> -->
+            <button class="btn_right" [routerLink]="['/masters/add-user']"><i
+                class="material-icons">&#xE147;</i></button>
+
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="offset-md-9 col-md-3">
+            <mat-form-field>
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="mat-elevation-z8 ">
+          <div class="table-responsive">
+            <table class="table">
+              <table mat-table [dataSource]="userList">
+                <ng-container matColumnDef="sNo">
+                  <th mat-header-cell *matHeaderCellDef> S.No. </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element; let i = index;"> {{i+1}} </td>
+                </ng-container>
+                <!-- Position Column -->
+                <ng-container matColumnDef="user_name">
+                  <th mat-header-cell *matHeaderCellDef> User name </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element"> {{element.first_name}} {{element.last_name}} </td>
+                </ng-container>
+                <!-- Weight Column -->
+                <ng-container matColumnDef="email">
+                  <th mat-header-cell *matHeaderCellDef> Email</th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element"> {{element.email}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="mobile">
+                  <th mat-header-cell *matHeaderCellDef> Mobile</th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element"> {{element.mobile}} </td>
+                </ng-container>
+                
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="user_type">
+                  <th mat-header-cell *matHeaderCellDef> User Type </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element">
+                    <div *ngIf="element.user_type == 1; else elseDiv">
+                       Brand
+                    </div>
+                    <ng-template #elseDiv>
+                      Customer
+                    </ng-template>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="email_verified">
+                  <th mat-header-cell *matHeaderCellDef> Email Verified Status </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element">
+                    <div *ngIf="element.verifyEmailStatus == 1; else elseDiv">
+                      Verified
+                   </div>
+                   <ng-template #elseDiv>
+                      Not Verified
+                   </ng-template>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Actions">
+                  <th mat-header-cell *matHeaderCellDef> Actions </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element;let i = index">
+                    <a (click)="editUser(element._id)" class="edit_listseasoncolor edit"><i class="material-icons"
+                      matTooltip="Edit" matTooltipPosition="left" matTooltipClass="custom-tooltip">&#xE254;</i></a>
+                    <a (click)="deleteUser(element._id,element.subsidiary_id)" class="delete del_listseasoncolor"><i class="material-icons"
+                       matTooltip="Delete" matTooltipPosition="right" matTooltipClass="custom-tooltip">&#xE872;</i></a>
+                  </td>
+                </ng-container>
+
+                <tr class="tb_head_row" mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr class="tb_rows_data" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+              <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

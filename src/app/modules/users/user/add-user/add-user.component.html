@@ -1,0 +1,179 @@
+<div class="row">
+    <div class="col-lg-7 col-md-6 col-sm-6">
+        <div class="card card-plain">
+            <div class="card-header card-header-info">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h4 class="card-title">Add New User </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <form [formGroup]='usersForm' novalidate autocomplete='off'>
+                            <div class="row filter_top">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-6 mat-form-field--inline">
+                                            <mat-form-field appearance="">
+                                                <mat-label>First Name</mat-label>
+                                                <input matInput type="text" placeholder="First Name"
+                                                    formControlName="firstName" required>
+                                                <mat-error
+                                                    *ngIf="common.hasError(usersForm.controls.firstName, submitted)">
+                                                    First Name is required</mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-md-6 mat-form-field--inline">
+                                            <mat-form-field appearance="">
+                                                <mat-label>Last Name</mat-label>
+                                                <input matInput type="text" placeholder="Last Name"
+                                                    formControlName="lastName" required>
+                                                <mat-error
+                                                    *ngIf="common.hasError(usersForm.controls.lastName, submitted)">Last
+                                                    Name is required</mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 mat-form-field--inline">
+                                            <mat-form-field appearance="">
+                                                <mat-label>Email ID</mat-label>
+                                                <input matInput type="text" placeholder="Email ID"
+                                                    formControlName="email" required>
+                                                <mat-error *ngIf="common.hasError(usersForm.controls.email, submitted)">
+                                                    A Valid Email is required</mat-error>
+
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-md-4 mat-form-field--inline">
+                                            <mat-form-field appearance="">
+                                                <mat-label>Mobile</mat-label>
+                                                <input matInput type="text" placeholder="Mobile"
+                                                    formControlName="mobile" appNumbersOnly>
+                                                <!-- <mat-error *ngIf="formData.mobile.errors.required"  >Mobile is required</mat-error> -->
+                                                <!-- <mat-error *ngIf="common.hasError(usersForm.controls.mobile, submitted)"  >Mobile is required</mat-error> -->
+                                                <!-- <mat-error *ngIf="formData.mobile.errors.minlength"  >Mobile Should be Min of 10 Digits </mat-error>
+                                                <mat-error *ngIf="formData.mobile.errors.maxlength"  >Mobile Should be Max of 10 Digits </mat-error>
+                                                 -->
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <mat-form-field>
+                                                <mat-label>Roles</mat-label>
+                                                <mat-select formControlName="roleId">
+                                                    <mat-option *ngFor="let option of roles"  (click)="getFranchiseList(option.name)"
+                                                         [value]="option._id">
+                                                        {{option.name}}
+                                                    </mat-option>
+                                                </mat-select>
+                                                <mat-error
+                                                    *ngIf="common.hasError(usersForm.controls.roleId, submitted)">Select
+                                                    atlest one role</mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4" *ngIf="showFranchise">
+                                            <mat-form-field appearance="">
+                                                <mat-label>Select Customer </mat-label>
+                                                <mat-select placeholder="Select Customer" formControlName="franchiseId">
+                                                    <mat-option value="">Select</mat-option>
+                                                    <mat-option *ngFor="let option of franchiseList"
+                                                         [value]="option.id">
+                                                        {{ option.franchise_name }}
+                                                    </mat-option>
+                                                </mat-select>
+                                                <mat-error>Select Customer is required</mat-error>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div class="col-md-4" *ngIf="showApprovalRequiredList">
+                                            <mat-form-field appearance="">
+                                                <mat-label>Admin Approval Required </mat-label>
+                                                <mat-select placeholder="Approval Required" formControlName="adminApprovalRequired"> 
+                                                    <mat-option value="">Select</mat-option>
+                                                    <mat-option *ngFor="let option of approvalRequiredList"
+                                                         [value]="option.id">
+                                                        {{ option.name }}
+                                                    </mat-option>
+                                                </mat-select>
+                                                <mat-error>Select Customer is required</mat-error>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div class="col-md-4"  *ngIf="showSubsidiary">
+                                            <mat-form-field appearance="">
+                                              <mat-label>Subsidiary</mat-label>
+                                              <mat-select placeholder="Subsidiary"  formControlName="subsidiaryId">
+                                                <mat-option *ngFor="let option of subsidiaryList" 
+                                                  [value]="option.id">{{ option.name }}
+                                                </mat-option>
+                                              </mat-select>
+                                              <!-- <mat-error *ngIf="submitted && get.regionId.errors">Region is required</mat-error> -->
+                                            </mat-form-field>
+                                          </div>
+                                        <!-- (click)="getSalesList(option.name)" -->
+                                        <!-- <div class="col-md-4" *ngIf="showCustomers">
+                                            <mat-form-field appearance="">
+                                                <mat-label>Select Customers </mat-label>
+                                                <mat-select placeholder="Select Customer"
+                                                    formControlName="salesCustomerIds" [multiple]=true>
+
+                                                    <mat-option *ngFor="let option of franchiseList"
+                                                        [value]="option.id">
+                                                        {{ option.franchise_name }}
+                                                    </mat-option>
+                                                </mat-select>
+                                                <mat-error>Select Customer is required</mat-error>
+                                            </mat-form-field>
+                                        </div> -->
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mat-form-field--inline">
+                                            <mat-form-field appearance="">
+                                                <mat-label>Password</mat-label>
+                                                <input matInput type="password" placeholder="Password"
+                                                    formControlName="password" required>
+                                                <mat-error
+                                                    *ngIf="common.hasError(usersForm.controls.password, submitted)">
+                                                    Password is required</mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-md-6 mat-form-field--inline">
+                                            <mat-form-field appearance="">
+                                                <mat-label>Confirm Password</mat-label>
+                                                <!-- [errorStateMatcher]="matcher" -->
+                                                <input matInput type="password" placeholder="Confirm Password"
+                                                    formControlName="confirmPassword">
+                                                <!-- <mat-error *ngIf="usersForm.hasError('notSame')"  >Confirm Password Does Not Password</mat-error> -->
+                                                <mat-error
+                                                    *ngIf="common.hasError(usersForm.controls.confirmPassword, submitted)">
+                                                    Confirm Password is required</mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button type="submit" class="btn btn-primary btn-sm btn_save"
+                                                (click)="onSubmit()">Submit</button>
+                                            <button type="submit" class="btn btn-danger btn-sm btn_cancel"
+                                                [routerLink]="['/users/list-user']">Cancel</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

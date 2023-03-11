@@ -1,0 +1,117 @@
+
+
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="card">
+      <div class="card-header card-header-info">
+        <div class="row">
+          <div class="col-sm-6">
+            <h4 class="card-title">BMC Kendra</h4>
+          </div>
+          <div class="col-sm-6">
+
+           
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+
+        <!-- <div class="card-body"> -->
+          <form [formGroup]="farmersLedgerForm">
+            <div class="row">
+              <div class="col-md-3 mat-form-field--inline">
+                <mat-form-field appearance="">
+                  <mat-label> Date</mat-label>
+                  <input matInput #input [matDatepicker]="datePicker2" (dateChange)="updateMinDate()" (focus)="datePicker2.open()" [max]="maxDate" placeholder="From Date" formControlName="fromDate">
+                  <mat-datepicker-toggle matSuffix [for]="datePicker2"></mat-datepicker-toggle>
+                  <mat-datepicker #datePicker2 (closed)="input.blur()"> </mat-datepicker>
+                  <mat-error *ngIf="submitted && get.fromDate.errors"  >From Date is required</mat-error>
+                </mat-form-field>
+              </div>
+             
+              <div class="col-md-4 mat-form-field--inline">
+                <mat-form-field appearance="">
+                  <mat-label>Shift</mat-label>
+                  <mat-select placeholder="Shift" formControlName="shift" >
+                    <mat-option *ngFor="let option of shifts" [value]="option.id">
+                      {{ option.name }}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="submitted && get.shift.errors">Shiftis required</mat-error>
+                </mat-form-field>
+              </div>
+              
+             
+            </div>
+            <!-- <div class="row">
+              <div class="col-md-3 mat-form-field--inline">
+                <button type="submit" class="btn btn-primary btn-sm btn_save" (click)="onSubmit()" >Submit</button>
+  
+              </div>
+            </div> -->
+  
+           
+  
+          </form>
+        <!-- </div> -->
+        <!-- <div class="row">
+          <div class="offset-md-9 col-md-3">
+            <mat-form-field>
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+            </mat-form-field>
+          </div>
+        </div> -->
+
+        <div class="mat-elevation-z8 ">
+          <div class="table-responsive">
+            <table class="table">
+              <table mat-table [dataSource]="mpcsList">
+                <ng-container matColumnDef="id">
+                  <th mat-header-cell *matHeaderCellDef> S.No. </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element; let i = index;">  {{element.id}}  </td>
+                </ng-container>
+                <!-- Position Column -->
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef> Season name </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+                <!-- Weight Column -->
+                <ng-container matColumnDef="capacity">
+                  <th mat-header-cell *matHeaderCellDef> Capacity </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element"> {{element.capacity}} </td>
+                </ng-container>
+                <ng-container matColumnDef="snf">
+                  <th mat-header-cell *matHeaderCellDef> SNF </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element"> {{element.snf}} </td>
+                </ng-container>
+                <ng-container matColumnDef="fat">
+                  <th mat-header-cell *matHeaderCellDef> FAT </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element"> {{element.fat}} </td>
+                </ng-container>
+                <ng-container matColumnDef="total_cow_milk">
+                  <th mat-header-cell *matHeaderCellDef> Total Cow Milk(Ltrs) </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element"> {{element.total_cow_milk}} </td>
+                </ng-container>
+                <ng-container matColumnDef="total_buffalo_milk">
+                  <th mat-header-cell *matHeaderCellDef> Total Buffalo Milk(Ltrs) </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element"> {{element.total_buffalo_milk}} </td>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <!-- <ng-container matColumnDef="to_date">
+                  <th mat-header-cell *matHeaderCellDef> End Date </th>
+                  <td style="width: 0px" mat-cell *matCellDef="let element"> {{element.to_date | date}} </td>
+                </ng-container> -->
+             
+
+                <tr class="tb_head_row" mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr class="tb_rows_data" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+              <mat-paginator #myPaginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

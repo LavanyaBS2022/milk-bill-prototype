@@ -1,0 +1,93 @@
+<div class="row">
+    <div class="col-lg-12 col-md-6 col-sm-6">   
+        <div class="card card-plain">
+            <div class="card-header card-header-info">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h4 class="card-title">Access Mapping</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        
+                        <form [formGroup]='accessMapForm'>
+                            <div class="row filter_top">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <mat-form-field>
+                                                <mat-label>Roles</mat-label>
+                                                <mat-select formControlName="roleId">
+                                                    <mat-option *ngFor="let option of roles" [value]="option._id">
+                                                        {{option.name}}
+                                                    </mat-option>
+                                                </mat-select>
+                                                <mat-error *ngIf="common.hasError(accessMapForm.controls.roleId, submitted)"  >Select atlest one role</mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <mat-form-field>
+                                                <mat-label>Type</mat-label>
+                                                <mat-select formControlName = 'type'>
+                                                  <mat-option *ngFor="let key of type" [value]="key.value">
+                                                    {{key.viewValue}}
+                                                  </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <mat-form-field>
+                                                <mat-label>Modules</mat-label>
+                                                <mat-select  formControlName="moduleId">
+                                                    <mat-option *ngFor="let option of modules" [value]="option._id">
+                                                        {{option.name}}
+                                                    </mat-option>
+                                                </mat-select>
+                                                <mat-error *ngIf="common.hasError(accessMapForm.controls.moduleId, submitted)"  >Select atlest one module</mat-error>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <button (click)="load()" mat-raised-button color="warn">Load</button> &nbsp;&nbsp;&nbsp;
+                                            <button (click)="updateAccessMapping()" mat-raised-button color="primary" [disabled]="!isSubmit">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="row" *ngIf="isSubmit">
+                    <div class="col-lg-12">
+                        <mat-divider></mat-divider>
+                        <table class="table card-table table-vcenter text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th width="5%">No.</th>
+                                    <th width="20%">Module Name</th>
+                                    <th width="75%">Permissions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let key of accessMapping; let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{key.moduleName}}</td>
+                                    <td>
+                                        <div class="row col-sm-12 noPadding">
+                                            <div class="col-sm-3 noLeftPadding" *ngFor="let item of key.permission">
+                                                <mat-checkbox [(ngModel)]="item.selected">{{item.permissionName}}</mat-checkbox>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
